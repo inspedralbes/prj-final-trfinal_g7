@@ -1,6 +1,12 @@
 # Artefactes d'scrum que han de quedar documentats.
   * Sprint plan semanal 
-    * El primer dia de l'sprint
+    * El primer dia de l'sprint: 
+    
+    - Unir-nos al repositori de github.
+    -descarregar el projecte i documentar-ho.
+    -Crear projecte al taiga , fer sprint i tasques d'avui.
+    -Crear prototip penpot sencer.
+
     * Un document per sprint
     * Conté "la idea general del MVP de l'sprint", quins reptes s'han de superar...
     * *NO CONTÉ* un llistat de les tasques ni de les històries d'usuari del TAIGA
