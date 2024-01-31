@@ -11,7 +11,7 @@ El projecte s'ha de poder desplegar en mode desenvolupament simplement fent dock
 
 # Aquest fitxer ha de contenir com a mínim:
  * Nom dels integrants: Danilo y gala
- * Nom del projecte: VoteMix 
+ * Nom del projecte: SoundSync
  * Petita descripció: Aplicacion para buscar una cancion y que hayan votaciones para que suene a cada hora en el instituto.
  * Adreça del gestor de tasques: 
  **[Taiga](https://tree.taiga.io/project/galad22-prj-final-g7/taskboard/sprint-0-636)**
