@@ -11,7 +11,7 @@ class Canciones extends Model
     protected $fillable = [
         'id',
         'nombre',
-        'categoria',
-        'cantante'
+        'artista',
+        'url'
     ];
 }
