@@ -14,4 +14,8 @@ class Canciones extends Model
         'artista',
         'url'
     ];
+    public function categorias()
+    {
+        return $this->belongsToMany('App\Models\Categorias', 'cancion_categoria', 'cancion_id', 'categoria_id');
+    }
 }

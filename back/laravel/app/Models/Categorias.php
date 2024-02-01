@@ -12,4 +12,8 @@ class Categorias extends Model
         'id',
         'nombre'
     ];
+    public function canciones()
+    {
+        return $this->belongsToMany('App\Models\Canciones', 'cancion_categoria');
+    }
 }

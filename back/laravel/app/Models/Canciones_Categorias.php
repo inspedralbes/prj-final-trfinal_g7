@@ -11,7 +11,7 @@ class Canciones_Categorias extends Model
 
 public function categorias()
 {
-    return $this->belongsToMany(Categorias::class, 'canciones_categorias');
+    return $this->belongsToMany(Categorias::class, 'canciones_categoria');
 }
 
 }

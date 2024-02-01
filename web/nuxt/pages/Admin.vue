@@ -14,6 +14,7 @@
     <input v-model="nuevaCancion.grupo" type="text" placeholder="Nombre del grupo" required>
     <input v-model="nuevaCancion.url" type="text" placeholder="URL de la canción" required>
     <button @click="agregarCancion()">Añadir Cancion</button>
+    <button @click="irCategorias()">categories</button>
 
 
 
@@ -38,6 +39,11 @@ export default {
       // Puedes agregar lógica de autenticación aquí
       // Por ahora, simplemente redireccionamos a la página App
       this.$router.push('/app');
+    },
+    irCategorias() {
+      // Puedes agregar lógica de autenticación aquí
+      // Por ahora, simplemente redireccionamos a la página App
+      this.$router.push('/categorias');
     },
     async eliminarCancion(idCancion) {
       try {
