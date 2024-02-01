@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Log; 
 use Illuminate\Http\Request;
 use App\Models\Canciones; 
-
+use Illuminate\Log\LogManager;
 class CancionesController extends Controller
 {
     
@@ -31,11 +31,23 @@ class CancionesController extends Controller
    
     public function update(Request $request, $id)
 {
-    Log::info('Request data: ', $request->all());
+    
+    
 
+    $request->validate([
+        'nombre' => '',
+        'artista' => '',
+        'url' => '',
+    ]);
     $cancion = Canciones::find($id);
-    $cancion->update($request->all());
-    return response()->json(['cancion' => $cancion]);
+   
+        $cancion->nombre = $request->input('nombre', $cancion->nombre);
+        $cancion->artista = $request->input('artista', $cancion->artista);
+        $cancion->url = $request->input('url', $cancion->url);
+        $cancion->save();
+
+        return response()->json(['cancion' => $cancion]);
+    
 }
 
     
