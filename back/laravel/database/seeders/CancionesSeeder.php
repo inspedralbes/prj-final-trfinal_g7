@@ -12,7 +12,7 @@ class CancionesSeeder extends Seeder
      */
     public function run(): void
     {
-        $cancionesJson = file_get_contents('../laravel/dades.json');
+        $cancionesJson = file_get_contents('../laravel/canciones.json');
         $canciones = json_decode($cancionesJson, true);
         foreach ($canciones as $cancionesData) {
             Canciones::create([
