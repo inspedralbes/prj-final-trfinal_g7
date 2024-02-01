@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CancionesController;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\Canciones_Categorias;
+use App\Http\Controllers\AuthController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -32,7 +33,9 @@ Route::delete('eliminar-categoria/{id}', [CategoriasController::class, 'destroy'
 
 Route::post('/assign-categories', [Canciones_Categorias::class, 'index']);
 
-
+/**RUTAS LOGIN-REGISTER USERS */
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
