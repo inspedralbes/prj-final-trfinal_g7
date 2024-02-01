@@ -34,8 +34,12 @@ Route::delete('eliminar-categoria/{id}', [CategoriasController::class, 'destroy'
 Route::post('/assign-categories', [Canciones_Categorias::class, 'assignCategories']);
 
 /**RUTAS LOGIN-REGISTER USERS */
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
+
+
+Route::group(['middleware' => ['cors']], function () {
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/login', [AuthController::class, 'login']); 
+});
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
