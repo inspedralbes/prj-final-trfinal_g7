@@ -48,14 +48,7 @@ export default {
   },
   async created() {
     try {
-      const response = await fetch(`/static/canciones.json`);
-
-      if (!response.ok) {
-        throw new Error(`Error en la solicitud: ${response.status}`);
-      }
-
-      const data = await response.json();
-      this.canciones = data.canciones;
+      await this.mostrarCanciones();
     } catch (error) {
       console.error('Error al obtener las canciones:', error);
     }
