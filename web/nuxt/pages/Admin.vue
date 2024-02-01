@@ -30,7 +30,8 @@ export default {
       nuevaCancion: {
       nombre: '',
       grupo: '',
-      url: ''
+      url: '',
+      ruta: 'http://localhost:8000',
     },
     };
   },

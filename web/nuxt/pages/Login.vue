@@ -2,13 +2,16 @@
 
 <template>
   <div>
-    <h2>Login</h2>
+    <h2>Iniciar sesión</h2>
+    <form @submit.prevent="login">
+      <label for="login-email">Correo electrónico:</label>
+      <input id="login-email" v-model="loginForm.email" type="email" required>
 
-      <label for="username">Nombre:</label>
-      <input type="text" id="username" v-model="username" required>
-      <label for="password">Contraseña:</label>
-      <input type="password" id="password" v-model="password" required>
-      <button @click="login">Entrar</button>
+      <label for="login-password">Contraseña:</label>
+      <input id="login-password" v-model="loginForm.password" type="password" required>
+
+      <button type="submit">Iniciar sesión</button>
+    </form>
   </div>
 </template>
 
@@ -18,12 +21,26 @@ export default {
     return {
       username: '',
       password: '',
+      loginForm: {
+        email: '',
+        password: '',
+      }
     };
   },
   methods: {
-    login() {
-      // Puedes agregar lógica de autenticación aquí
-      // Por ahora, simplemente redireccionamos a la página App
+    async login() {
+      const response = await fetch(`${this.ruta}/api/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(this.loginForm),
+      });
+      if (response.ok) {
+       console.log('Usuario logeado');
+      } else {
+      console.log('Error al logear usuario');
+      }
       this.$router.push('/app');
     },
   },
