@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Canciones;
-use App\Models\Categorias;
 
 class Canciones_Categorias extends Controller
 {
@@ -16,3 +15,4 @@ class Canciones_Categorias extends Controller
         return response()->json(['message' => 'Categories assigned successfully']);
     }
 }
+?>

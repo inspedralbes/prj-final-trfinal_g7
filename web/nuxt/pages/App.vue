@@ -55,8 +55,33 @@ export default {
   },
 };
 </script>
-  
+    
 <style scoped>
-/* Puedes agregar estilos específicos para este componente si es necesario */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+h2 {
+  margin: 0 0 5px;
+}
+
+p {
+  margin: 0 0 10px;
+}
+
+a {
+  color: #337ab7;
+  text-decoration: none;
+}
 </style>
+  
+
   
