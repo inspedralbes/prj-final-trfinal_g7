@@ -1,8 +1,8 @@
 # Documentació bàsica del projecte
 Alguns dels punts que han de quedar explicats:
- * Objectius
+ * Objectius: Fer aplicacio funcional en el que els usuaris pugin votar y veure la canço que  mes votada.
  * Arquitectura bàsica
-   * Tecnologies utilitzades
+   * Tecnologies utilitzades: Back-Strapi / Front-Nuxt / Node
    * Interrelació entre els diversos components
  * Com crees l'entorn de desenvolupament
  * Com desplegues l'aplicació a producció
