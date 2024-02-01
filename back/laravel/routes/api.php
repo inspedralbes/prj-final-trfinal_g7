@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CancionesController;
 use App\Http\Controllers\CategoriasController;
+use App\Http\Controllers\Canciones_Categorias;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -28,6 +29,8 @@ Route::post('/crear-categoria', [CategoriasController::class, 'store']);
 Route::get('buscar-categoria/{id}', [CategoriasController::class, 'show']);
 Route::put('actualizar-categoria/{id}', [CategoriasController::class, 'update']);
 Route::delete('eliminar-categoria/{id}', [CategoriasController::class, 'destroy']);
+
+Route::post('/assign-categories', [Canciones_Categorias::class, 'index']);
 
 
 

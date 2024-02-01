@@ -56,4 +56,5 @@ class CancionesController extends Controller
         Canciones::destroy($id);
         return response()->json(['message' => 'Cancion deleted successfully']);
     }
+   
 }
