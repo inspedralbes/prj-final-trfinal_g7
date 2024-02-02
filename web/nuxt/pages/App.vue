@@ -1,10 +1,10 @@
-<!-- components/App.vue -->
 <template>
   <div>
     <h2>¡Bienvenido, {{ username }}!</h2>
     <p>Has iniciado sesión correctamente.</p>
+    <input type="text" v-model="filtro" placeholder="Buscar canción o artista">
     <ul>
-      <li v-for="cancion in canciones" :key="cancion.id">
+      <li v-for="cancion in cancionesFiltradas" :key="cancion.id">
         <h2>{{ cancion.nombre }}</h2>
         <p>{{ cancion.artista }}</p>
         <a :href="cancion.url">Escuchar</a>
@@ -19,14 +19,21 @@ export default {
   data() {
     return {
       canciones: [],
+      filtro: '',
       ruta: 'http://localhost:8000',
     };
-
+  },
+  computed: {
+    cancionesFiltradas() {
+      return this.canciones.filter(cancion => 
+        cancion.nombre.toLowerCase().includes(this.filtro.toLowerCase()) ||
+        cancion.artista.toLowerCase().includes(this.filtro.toLowerCase())
+      );
+    }
   },
   methods: {
     async mostrarCanciones() {
       try {
-
         const response = await fetch(`${this.ruta}/api/mostrar-canciones`, {
           method: 'GET',
         });
@@ -82,6 +89,3 @@ a {
   text-decoration: none;
 }
 </style>
-  
-
-  

@@ -25,7 +25,7 @@ class AuthController extends Controller
         $user->save();
 
         // Crear token
-        $token = $user->createToken('myapptoken')->plainTextToken;
+        $token = $user->createToken('soundsync')->plainTextToken;
 
         $response = [
             'user' => $user,
@@ -50,7 +50,7 @@ class AuthController extends Controller
         }
 
         // Crear token
-        $token = $user->createToken('myapptoken')->plainTextToken;
+        $token = $user->createToken('soundsync')->plainTextToken;
 
         $response = [
             'user' => $user,
