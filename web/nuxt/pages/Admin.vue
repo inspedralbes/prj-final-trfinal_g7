@@ -2,19 +2,23 @@
 
 <template>
   <div>
-    <h2>Login</h2>
-
-    <label for="username">Nombre:</label>
-    <input type="text" id="username" v-model="username" required>
-    <label for="password">Contraseña:</label>
-    <input type="password" id="password" v-model="password" required>
-    <button @click="login">Entrar</button>
-    
+    <input type="text" v-model="filtro" placeholder="Buscar canción o artista">
+    <ul>
+      <li v-for="cancion in cancionesFiltradas" :key="cancion.id">
+        <h2>{{ cancion.nombre }}</h2>
+        <p>{{ cancion.artista }}</p>
+        <a :href="cancion.url">Escuchar</a>
+        <button @click="eliminarCancion(cancion.id)">Eliminar Cancion</button>
+      </li>
+    </ul>
+    <h1>Añadir cancion</h1>
     <input v-model="nuevaCancion.nombre" type="text" placeholder="Nombre de la canción" required>
-    <input v-model="nuevaCancion.grupo" type="text" placeholder="Nombre del grupo" required>
+    <input v-model="nuevaCancion.artista" type="text" placeholder="Nombre del grupo" required>
     <input v-model="nuevaCancion.url" type="text" placeholder="URL de la canción" required>
     <button @click="agregarCancion()">Añadir Cancion</button>
+
     <button @click="irCategorias()">categories</button>
+    <button @click="eliminarCancion()">eliminar cancion</button>
 
 
 
@@ -25,21 +29,45 @@
 export default {
   data() {
     return {
-      username: '',
-      password: '',
+      canciones: [],
+      filtro: '',
       nuevaCancion: {
-      nombre: '',
-      grupo: '',
-      url: '',
-      ruta: 'http://localhost:8000',
-    },
+        nombre: '',
+        artista: '',
+        url: '',
+        ruta: 'http://localhost:8000',
+      },
     };
+
+  },
+  computed: {
+    cancionesFiltradas() {
+      return this.canciones.filter(cancion =>
+        cancion.nombre.toLowerCase().includes(this.filtro.toLowerCase()) ||
+        cancion.artista.toLowerCase().includes(this.filtro.toLowerCase())
+      );
+    },
   },
   methods: {
-    login() {
-      // Puedes agregar lógica de autenticación aquí
-      // Por ahora, simplemente redireccionamos a la página App
-      this.$router.push('/app');
+    async mostrarCanciones() {
+      try {
+        const response = await fetch(`http://localhost:8000/api/mostrar-canciones`, {
+          method: 'GET',
+        });
+
+        if (!response.ok) {
+          throw new Error(`Error en la solicitud: ${response.status}`);
+        }
+
+        const data = await response.json();
+        this.canciones = data.canciones;
+        console.log(data.message);
+
+        console.log("Canciones mostradas");
+      } catch (error) {
+        console.error('Error al mostrar ocupantes:', error);
+        throw error;
+      }
     },
     irCategorias() {
       // Puedes agregar lógica de autenticación aquí
@@ -48,7 +76,7 @@ export default {
     },
     async eliminarCancion(idCancion) {
       try {
-        const response = await fetch(`${this.ruta}/api/eliminar-cancion/${idCancion}`, {
+        const response = await fetch(`http://localhost:8000/api/eliminar-cancion/${idCancion}`, {
           method: 'DELETE'
         });
 
@@ -68,12 +96,12 @@ export default {
     },
     async agregarCancion(nuevaCancion) {
       try {
-        const response = await fetch(`${this.ruta}/api/agregar-cancion`, {
+        const response = await fetch(`http://localhost:8000/api/crear-cancion`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify(nuevaCancion)
+          body: JSON.stringify(this.nuevaCancion)
         });
 
         if (!response.ok) {
@@ -91,6 +119,13 @@ export default {
       }
     },
 
+  },
+  async created() {
+    try {
+      await this.mostrarCanciones();
+    } catch (error) {
+      console.error('Error al obtener las canciones:', error);
+    }
   },
 };
 </script>

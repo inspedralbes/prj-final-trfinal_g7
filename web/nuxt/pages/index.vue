@@ -1,11 +1,13 @@
 <!-- pages/index.vue -->
 
 <template>
-  <div class="container">
+   <div class="container">
     <h1 class="title">{{ pageTitle }}</h1>
-   
-    <router-link class="link" to="/Login">Login</router-link>
-    <router-link class="link" to="/Admin">Admin</router-link>
+
+    <div class="navigation-links">
+      <router-link class="link" to="/Login">Login</router-link>
+      <router-link class="link" to="/Admin">Admin</router-link>
+    </div>
 
     <router-view></router-view>
   </div>
@@ -39,20 +41,30 @@ export default {
 .container {
   margin: 0 auto;
   max-width: 800px;
-  padding: 0 2rem;
+  padding: 2rem;
+  text-align: center;
 }
 
 .title {
   color: #2c3e50;
   font-size: 2em;
-  text-align: center;
   margin-bottom: 2rem;
 }
 
+.navigation-links {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
 .link {
-  display: block;
   color: #3498db;
   text-decoration: none;
-  margin-bottom: 1rem;
+  margin: 0 1rem;
+  font-size: 1.2em;
+}
+
+.link:hover {
+  text-decoration: underline;
 }
 </style>
