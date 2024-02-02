@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('artista');
             $table->string('url');
+            $table->string('urlPlayer');
             $table->timestamps();
         });
     }

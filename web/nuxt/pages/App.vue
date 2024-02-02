@@ -7,12 +7,10 @@
       <li v-for="cancion in cancionesFiltradas" :key="cancion.id">
         <h2>{{ cancion.nombre }}</h2>
         <p>{{ cancion.artista }}</p>
-        <a :href="cancion.url">Escuchar</a>
         <div>
-          
         </div>
-      
-        <iframe width="560" height="315" :src="cancion.url" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe width="200" height="115" :src="cancion.urlPlayer" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  
       </li>
     </ul>
   </div>

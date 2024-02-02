@@ -12,7 +12,8 @@ class Canciones extends Model
         'id',
         'nombre',
         'artista',
-        'url'
+        'url',
+        'urlPlayer'
     ];
     public function categorias()
     {
