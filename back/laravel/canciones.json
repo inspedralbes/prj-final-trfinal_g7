@@ -109,91 +109,106 @@
         "id": 16,
         "nombre": "I Will Always Love You",
         "artista": "Whitney Houston",
-        "url": "https://www.youtube.com/watch?v=3JWTaaS7LdU"
+        "url": "https://www.youtube.com/watch?v=3JWTaaS7LdU",
+        "urlPlayer": "https://www.youtube.com/embed/3JWTaaS7LdU?si=h4EMC1oFY4WaGbCa"
       },
       {
         "id": 17,
         "nombre": "Thunder",
         "artista": "Imagine Dragons",
-        "url": "https://www.youtube.com/watch?v=fKopy74weus"
+        "url": "https://www.youtube.com/watch?v=fKopy74weus",
+        "urlPlayer": "https://www.youtube.com/embed/fKopy74weus?si=HQ75iOyqUxR9Sl0F"
       },
       {
         "id": 18,
         "nombre": "Havana",
         "artista": "Camila Cabello ft. Young Thug",
-        "url": "https://www.youtube.com/watch?v=HCjNJDNzw8Y"
+        "url": "https://www.youtube.com/watch?v=HCjNJDNzw8Y",
+        "urlPlayer": "https://www.youtube.com/embed/HCjNJDNzw8Y?si=SK_mfIOb7LjJGybS"
       },
       {
         "id": 19,
         "nombre": "Bad Romance",
         "artista": "Lady Gaga",
-        "url": "https://www.youtube.com/watch?v=qrO4YZeyl0I"
+        "url": "https://www.youtube.com/watch?v=qrO4YZeyl0I",
+        "urlPlayer": "https://www.youtube.com/embed/qrO4YZeyl0I?si=WBtCbBeIe_OWEJiV"
       },
       {
         "id": 20,
         "nombre": "All of Me",
         "artista": "John Legend",
-        "url": "https://www.youtube.com/watch?v=ngq5Aw0Q6rQ"
+        "url": "https://www.youtube.com/watch?v=ngq5Aw0Q6rQ",
+        "urlPlayer": "https://www.youtube.com/embed/ngq5Aw0Q6rQ?si=2jpRAZGw_zxqyXoh"
       },
       {
         "id": 21,
         "nombre": "Riptide",
         "artista": "Vance Joy",
-        "url": "https://www.youtube.com/watch?v=zChg2-AB3o0"
+        "url": "https://www.youtube.com/watch?v=zChg2-AB3o0",
+        "urlPlayer": "https://www.youtube.com/embed/zChg2-AB3o0?si=3z3z3z3z3z3z3z3z"
       },
       {
         "id": 22,
         "nombre": "Can't Help Falling in Love",
         "artista": "Elvis Presley",
-        "url": "https://www.youtube.com/watch?v=MqazV4hbu8E"
+        "url": "https://www.youtube.com/watch?v=MqazV4hbu8E",
+        "urlPlayer": "https://www.youtube.com/embed/zChg2-AB3o0?si=5IAJn5RUvxpF-eZP"
       },
       {
         "id": 23,
         "nombre": "Let It Go",
         "artista": "Idina Menzel",
-        "url": "https://www.youtube.com/watch?v=kHue-HaXXzg"
+        "url": "https://www.youtube.com/watch?v=kHue-HaXXzg",
+        "urlPlayer": "https://www.youtube.com/embed/kHue-HaXXzg?si=NkidvxSzlhiTiXnV"
       },
       {
         "id": 24,
         "nombre": "Believer",
         "artista": "Imagine Dragons",
-        "url": "https://www.youtube.com/watch?v=W0DM5lcj6mw"
+        "url": "https://www.youtube.com/watch?v=W0DM5lcj6mw",
+        "urlPlayer": "https://www.youtube.com/embed/W0DM5lcj6mw?si=1BTgbGelKmHd8io9"
       },
       {
         "id": 25,
         "nombre": "Shut Up and Dance",
         "artista": "WALK THE MOON",
-        "url": "https://www.youtube.com/watch?v=_glQsoPesQo"
+        "url": "https://www.youtube.com/watch?v=_glQsoPesQo",
+        "urlPlayer": "https://www.youtube.com/embed/_glQsoPesQo?si=0TOoSkSGUGiQxiw1"
       },
       {
         "id": 26,
         "nombre": "Take Me to Church",
         "artista": "Hozier",
-        "url": "https://www.youtube.com/watch?v=SND2LY0s8FE"
+        "url": "https://www.youtube.com/watch?v=SND2LY0s8FE",
+        "urlPlayer": "https://www.youtube.com/embed/SND2LY0s8FE?si=ncekB3I0M8X_Esvm"
       },
       {
         "id": 27,
         "nombre": "The Middle",
         "artista": "Zedd, Maren Morris, Grey",
-        "url": "https://www.youtube.com/watch?v=xQzS3JnZQZM"
+        "url": "https://www.youtube.com/watch?v=xQzS3JnZQZM",
+        "urlPlayer": "https://www.youtube.com/embed/xQzS3JnZQZM?si=oQLQx8dGru7lcGr-"
       },
       {
         "id": 28,
         "nombre": "Perfect",
         "artista": "One Direction",
-        "url": "https://www.youtube.com/watch?v=iNrRDa8B4BI"
+        "url": "https://www.youtube.com/watch?v=iNrRDa8B4BI",
+        "urlPlayer": "https://www.youtube.com/embed/iNrRDa8B4BI?si=rc-f4dfUxnJlJLmh"
       },
       {
         "id": 29,
         "nombre": "Pumped Up Kicks",
         "artista": "Foster The People",
-        "url": "https://www.youtube.com/watch?v=SDTZ7iX4vTQ"
+        "url": "https://www.youtube.com/watch?v=SDTZ7iX4vTQ",
+        "urlPlayer": "https://www.youtube.com/embed/SDTZ7iX4vTQ?si=77SZlpvRKQrZi5dl"
       },
       {
         "id": 30,
         "nombre": "Blinding Lights",
         "artista": "The Weeknd",
-        "url": "https://www.youtube.com/watch?v=fHI8X4OXluQ"
+        "url": "https://www.youtube.com/watch?v=fHI8X4OXluQ",
+        "urlPlayer": "https://www.youtube.com/embed/fHI8X4OXluQ?si=npCwVzY-uTWup0ZP"
       }
 ]
   
