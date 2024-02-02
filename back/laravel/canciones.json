@@ -4,181 +4,211 @@
         "id": 1,
         "nombre": "Bohemian Rhapsody",
         "artista": "Queen",
-        "url": "https://www.youtube.com/watch?v=fJ9rUzIMcZQ"
+        "url": "https://www.youtube.com/watch?v=fJ9rUzIMcZQ",
+        "urlPlayer": "https://www.youtube.com/embed/fJ9rUzIMcZQ?si=9mP0KXKZNcg9CGju"
       },
       {
         "id": 2,
         "nombre": "Shape of You",
         "artista": "Ed Sheeran",
-        "url": "https://www.youtube.com/watch?v=Zi_XLOBDo_Y"
+        "url": "https://www.youtube.com/watch?v=Zi_XLOBDo_Y",
+        "urlPlayer": "https://www.youtube.com/embed/Zi_XLOBDo_Y?si=GPzZpAHtZ_HMyp5e"
       },
       {
         "id": 3,
         "nombre": "Someone Like You",
         "artista": "Adele",
-        "url": "https://www.youtube.com/watch?v=rYEDA3JcQqw"
+        "url": "https://www.youtube.com/watch?v=rYEDA3JcQqw",
+        "urlPlayer": "https://www.youtube.com/embed/rYEDA3JcQqw?si=Xm4i0W4Wj_e5qNgU"
       },
       {
         "id": 4,
         "nombre": "Despacito",
         "artista": "Luis Fonsi ft. Daddy Yankee",
-        "url": "https://www.youtube.com/watch?v=gGsqTwENFMI"
+        "url": "https://www.youtube.com/watch?v=gGsqTwENFMI",
+        "urlPlayer": "https://www.youtube.com/embed/gGsqTwENFMI?si=S9-71abYSFEMCSyf"
       },
       {
         "id": 5,
         "nombre": "Happy",
         "artista": "Pharrell Williams",
-        "url": "https://www.youtube.com/watch?v=ZbZSe6N_BXs"
+        "url": "https://www.youtube.com/watch?v=ZbZSe6N_BXs",
+        "urlPlayer": "https://www.youtube.com/embed/ZbZSe6N_BXs?si=4QWu_nlejWz6msU-"
       },
       {
         "id": 6,
         "nombre": "Uptown Funk",
         "artista": "Mark Ronson ft. Bruno Mars",
-        "url": "https://www.youtube.com/watch?v=5JtL8b2t1EQ"
+        "url": "https://www.youtube.com/watch?v=5JtL8b2t1EQ",
+        "urlPlayer": "https://www.youtube.com/embed/5JtL8b2t1EQ?si=_RD7SALOq4dPskXJ"
       },
       {
         "id": 7,
         "nombre": "Rolling in the Deep",
         "artista": "Adele",
-        "url": "https://www.youtube.com/watch?v=rYEDA3JcQqw"
+        "url": "https://www.youtube.com/watch?v=rYEDA3JcQqw",
+        "urlPlayer": "https://www.youtube.com/embed/rYEDA3JcQqw?si=qLAZiNOLijsLzBYz"
       },
       {
         "id": 8,
         "nombre": "Radioactive",
         "artista": "Imagine Dragons",
-        "url": "https://www.youtube.com/watch?v=ktvTqknDobU"
+        "url": "https://www.youtube.com/watch?v=ktvTqknDobU",
+        "urlPlayer": "https://www.youtube.com/embed/ktvTqknDobU?si=CU2g2YeLMWQdAqos"
       },
       {
         "id": 9,
         "nombre": "Can't Stop the Feeling!",
         "artista": "Justin Timberlake",
-        "url": "https://www.youtube.com/watch?v=ru0K8uYEZWw"
+        "url": "https://www.youtube.com/watch?v=ru0K8uYEZWw",
+        "urlPlayer": "https://www.youtube.com/embed/ru0K8uYEZWw?si=SDns-7thvefImPWv"
       },
       {
         "id": 10,
         "nombre": "Waka Waka (This Time for Africa)",
         "artista": "Shakira",
-        "url": "https://www.youtube.com/watch?v=dzsuE5ugxf4"
+        "url": "https://www.youtube.com/watch?v=dzsuE5ugxf4",
+        "urlPlayer": "https://www.youtube.com/embed/dzsuE5ugxf4?si=byVHItEWTNzBFk1Y"
       },
       {
         "id": 11,
         "nombre": "Perfect",
         "artista": "Ed Sheeran",
-        "url": "https://www.youtube.com/watch?v=cNGjD0VG4R8"
+        "url": "https://www.youtube.com/watch?v=cNGjD0VG4R8",
+        "urlPlayer": "https://www.youtube.com/embed/cNGjD0VG4R8?si=EIhj2LUPf1PKMD3J"
       },
       {
         "id": 12,
         "nombre": "Billie Jean",
         "artista": "Michael Jackson",
-        "url": "https://www.youtube.com/watch?v=Zi_XLOBDo_Y"
+        "url": "https://www.youtube.com/watch?v=Zi_XLOBDo_Y",
+        "urlPlayer": "https://www.youtube.com/embed/Zi_XLOBDo_Y?si=GPzZpAHtZ_HMyp5e"
       },
       {
         "id": 13,
         "nombre": "Sweet Child o' Mine",
         "artista": "Guns N' Roses",
-        "url": "https://www.youtube.com/watch?v=1w7OgIMMRc4"
+        "url": "https://www.youtube.com/watch?v=1w7OgIMMRc4",
+        "urlPlayer": "https://www.youtube.com/embed/Zi_XLOBDo_Y?si=s3lAItXXPcSYXSQX"
       },
       {
         "id": 14,
         "nombre": "Counting Stars",
         "artista": "OneRepublic",
-        "url": "https://www.youtube.com/watch?v=yY3wc58yo2A"
+        "url": "https://www.youtube.com/watch?v=yY3wc58yo2A",
+        "urlPlayer": "https://www.youtube.com/embed/yY3wc58yo2A?si=VPEHjt85pOhaTMXm"
       },
       {
         "id": 15,
         "nombre": "Sorry",
         "artista": "Justin Bieber",
-        "url": "https://www.youtube.com/watch?v=8ELbX5CMomE"
+        "url": "https://www.youtube.com/watch?v=8ELbX5CMomE",
+        "urlPlayer": "https://www.youtube.com/embed/8ELbX5CMomE?si=h7iTS-MzgFMS5L3y"
       },
       {
         "id": 16,
         "nombre": "I Will Always Love You",
         "artista": "Whitney Houston",
-        "url": "https://www.youtube.com/watch?v=3JWTaaS7LdU"
+        "url": "https://www.youtube.com/watch?v=3JWTaaS7LdU",
+        "urlPlayer": "https://www.youtube.com/embed/3JWTaaS7LdU?si=h4EMC1oFY4WaGbCa"
       },
       {
         "id": 17,
         "nombre": "Thunder",
         "artista": "Imagine Dragons",
-        "url": "https://www.youtube.com/watch?v=fKopy74weus"
+        "url": "https://www.youtube.com/watch?v=fKopy74weus",
+        "urlPlayer": "https://www.youtube.com/embed/fKopy74weus?si=HQ75iOyqUxR9Sl0F"
       },
       {
         "id": 18,
         "nombre": "Havana",
         "artista": "Camila Cabello ft. Young Thug",
-        "url": "https://www.youtube.com/watch?v=HCjNJDNzw8Y"
+        "url": "https://www.youtube.com/watch?v=HCjNJDNzw8Y",
+        "urlPlayer": "https://www.youtube.com/embed/HCjNJDNzw8Y?si=SK_mfIOb7LjJGybS"
       },
       {
         "id": 19,
         "nombre": "Bad Romance",
         "artista": "Lady Gaga",
-        "url": "https://www.youtube.com/watch?v=qrO4YZeyl0I"
+        "url": "https://www.youtube.com/watch?v=qrO4YZeyl0I",
+        "urlPlayer": "https://www.youtube.com/embed/qrO4YZeyl0I?si=WBtCbBeIe_OWEJiV"
       },
       {
         "id": 20,
         "nombre": "All of Me",
         "artista": "John Legend",
-        "url": "https://www.youtube.com/watch?v=ngq5Aw0Q6rQ"
+        "url": "https://www.youtube.com/watch?v=ngq5Aw0Q6rQ",
+        "urlPlayer": "https://www.youtube.com/embed/ngq5Aw0Q6rQ?si=2jpRAZGw_zxqyXoh"
       },
       {
         "id": 21,
         "nombre": "Riptide",
         "artista": "Vance Joy",
-        "url": "https://www.youtube.com/watch?v=zChg2-AB3o0"
+        "url": "https://www.youtube.com/watch?v=zChg2-AB3o0",
+        "urlPlayer": "https://www.youtube.com/embed/zChg2-AB3o0?si=3z3z3z3z3z3z3z3z"
       },
       {
         "id": 22,
         "nombre": "Can't Help Falling in Love",
         "artista": "Elvis Presley",
-        "url": "https://www.youtube.com/watch?v=MqazV4hbu8E"
+        "url": "https://www.youtube.com/watch?v=MqazV4hbu8E",
+        "urlPlayer": "https://www.youtube.com/embed/zChg2-AB3o0?si=5IAJn5RUvxpF-eZP"
       },
       {
         "id": 23,
         "nombre": "Let It Go",
         "artista": "Idina Menzel",
-        "url": "https://www.youtube.com/watch?v=kHue-HaXXzg"
+        "url": "https://www.youtube.com/watch?v=kHue-HaXXzg",
+        "urlPlayer": "https://www.youtube.com/embed/kHue-HaXXzg?si=NkidvxSzlhiTiXnV"
       },
       {
         "id": 24,
         "nombre": "Believer",
         "artista": "Imagine Dragons",
-        "url": "https://www.youtube.com/watch?v=W0DM5lcj6mw"
+        "url": "https://www.youtube.com/watch?v=W0DM5lcj6mw",
+        "urlPlayer": "https://www.youtube.com/embed/W0DM5lcj6mw?si=1BTgbGelKmHd8io9"
       },
       {
         "id": 25,
         "nombre": "Shut Up and Dance",
         "artista": "WALK THE MOON",
-        "url": "https://www.youtube.com/watch?v=_glQsoPesQo"
+        "url": "https://www.youtube.com/watch?v=_glQsoPesQo",
+        "urlPlayer": "https://www.youtube.com/embed/_glQsoPesQo?si=0TOoSkSGUGiQxiw1"
       },
       {
         "id": 26,
         "nombre": "Take Me to Church",
         "artista": "Hozier",
-        "url": "https://www.youtube.com/watch?v=SND2LY0s8FE"
+        "url": "https://www.youtube.com/watch?v=SND2LY0s8FE",
+        "urlPlayer": "https://www.youtube.com/embed/SND2LY0s8FE?si=ncekB3I0M8X_Esvm"
       },
       {
         "id": 27,
         "nombre": "The Middle",
         "artista": "Zedd, Maren Morris, Grey",
-        "url": "https://www.youtube.com/watch?v=xQzS3JnZQZM"
+        "url": "https://www.youtube.com/watch?v=xQzS3JnZQZM",
+        "urlPlayer": "https://www.youtube.com/embed/xQzS3JnZQZM?si=oQLQx8dGru7lcGr-"
       },
       {
         "id": 28,
         "nombre": "Perfect",
         "artista": "One Direction",
-        "url": "https://www.youtube.com/watch?v=iNrRDa8B4BI"
+        "url": "https://www.youtube.com/watch?v=iNrRDa8B4BI",
+        "urlPlayer": "https://www.youtube.com/embed/iNrRDa8B4BI?si=rc-f4dfUxnJlJLmh"
       },
       {
         "id": 29,
         "nombre": "Pumped Up Kicks",
         "artista": "Foster The People",
-        "url": "https://www.youtube.com/watch?v=SDTZ7iX4vTQ"
+        "url": "https://www.youtube.com/watch?v=SDTZ7iX4vTQ",
+        "urlPlayer": "https://www.youtube.com/embed/SDTZ7iX4vTQ?si=77SZlpvRKQrZi5dl"
       },
       {
         "id": 30,
         "nombre": "Blinding Lights",
         "artista": "The Weeknd",
-        "url": "https://www.youtube.com/watch?v=fHI8X4OXluQ"
+        "url": "https://www.youtube.com/watch?v=fHI8X4OXluQ",
+        "urlPlayer": "https://www.youtube.com/embed/fHI8X4OXluQ?si=npCwVzY-uTWup0ZP"
       }
 ]
   

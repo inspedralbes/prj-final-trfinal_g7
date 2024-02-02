@@ -44,6 +44,7 @@ class CancionesController extends Controller
         $cancion->nombre = $request->input('nombre', $cancion->nombre);
         $cancion->artista = $request->input('artista', $cancion->artista);
         $cancion->url = $request->input('url', $cancion->url);
+        $cancion->urlPlayer = $request->input('urlPlayer', $cancion->urlPlayer);
         $cancion->save();
 
         return response()->json(['cancion' => $cancion]);

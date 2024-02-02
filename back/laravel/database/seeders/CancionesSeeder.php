@@ -19,7 +19,8 @@ class CancionesSeeder extends Seeder
                 'id' => $cancionesData['id'],
                 'nombre' => $cancionesData['nombre'],
                 'artista' => $cancionesData['artista'],
-                'url' => $cancionesData['url']          
+                'url' => $cancionesData['url'] ,
+                'urlPlayer' => $cancionesData['urlPlayer']        
             ]);
         }
     }
