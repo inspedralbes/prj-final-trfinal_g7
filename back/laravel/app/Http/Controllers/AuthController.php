@@ -24,7 +24,16 @@ class AuthController extends Controller
 
         $user->save();
 
-        return response()->json(['message' => 'Usuario registrado con éxito'], 201);
+        // Crear token
+        $token = $user->createToken('myapptoken')->plainTextToken;
+
+        $response = [
+            'user' => $user,
+            'token' => $token,
+            'message' => 'Usuario registrado con éxito'
+        ];
+
+        return response()->json($response, 201);
     }
 
     public function login(Request $request)
@@ -40,6 +49,15 @@ class AuthController extends Controller
             return response()->json(['message' => 'No estás registrado'], 401);
         }
 
-        return response()->json(['message' => 'Inicio de sesión exitoso'], 200);
+        // Crear token
+        $token = $user->createToken('myapptoken')->plainTextToken;
+
+        $response = [
+            'user' => $user,
+            'token' => $token,
+            'message' => 'Inicio de sesión exitoso'
+        ];
+
+        return response()->json($response, 200);
     }
 }
