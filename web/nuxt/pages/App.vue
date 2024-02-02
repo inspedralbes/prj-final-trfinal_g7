@@ -9,7 +9,7 @@
         <p>{{ cancion.artista }}</p>
         <div>
           <ul>
-            <li v-for="categoria in cancion.categorias" :key="categoria.id">
+            <li class="categorias" v-for="categoria in cancion.categorias" :key="categoria.id">
               {{ categoria.nombre }}
             </li>
           </ul>
@@ -52,7 +52,7 @@ export default {
         const data = await response.json();
         this.canciones = data.canciones;
         console.log(data.message);
-
+        console.log(this.canciones)
         console.log("Canciones mostradas");
       } catch (error) {
         console.error('Error al mostrar ocupantes:', error);
@@ -94,5 +94,19 @@ p {
 a {
   color: #337ab7;
   text-decoration: none;
+}
+.categorias{
+  display: inline;
+  margin: 0 5px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  color: #000;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-left: 25%;
 }
 </style>

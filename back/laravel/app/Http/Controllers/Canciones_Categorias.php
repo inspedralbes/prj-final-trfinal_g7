@@ -17,7 +17,7 @@ class Canciones_Categorias extends Controller
     public function assignCategories(Request $request)
     {
         $cancion = Canciones::find($request->input('idCancion'));
-        $cancion->categorias()->sync($request->input('idsCategorias'));
+        $cancion->categorias()->syncWithoutDetaching($request->input('idsCategorias'));
 
         return response()->json(['message' => 'Categories assigned successfully']);
     }
