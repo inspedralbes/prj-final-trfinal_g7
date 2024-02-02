@@ -6,6 +6,7 @@ use App\Http\Controllers\CancionesController;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\Canciones_Categorias;
 use App\Http\Controllers\AuthController;
+use App\Http\Middleware\Cors;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -33,14 +34,13 @@ Route::delete('eliminar-categoria/{id}', [CategoriasController::class, 'destroy'
 
 Route::post('/assign-categories', [Canciones_Categorias::class, 'assignCategories']);
 
+Route::post('/register', [AuthController::class, 'register']);
+
 /**RUTAS LOGIN-REGISTER USERS */
 
-
-Route::group(['middleware' => ['cors']], function () {
-    Route::post('/register', [AuthController::class, 'register']);
-    Route::post('/login', [AuthController::class, 'login']); 
+Route::group(['middleware' => 'Cors'], function () {
+    Route::post('/login', [AuthController::class, 'login']);
 });
-
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

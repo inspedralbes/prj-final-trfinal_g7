@@ -1,16 +1,27 @@
 <?php
+
 namespace App\Http\Middleware;
+
 use Closure;
-class Cors
+
+class Cors{
+    private $headers = [
+        'Access-Control-Allow-Origin' => 'http://localhost:3000',
+        'Access-Control-Allow-Methods' => 'POST, GET, OPTIONS, PUT, DELETE',
+        'Access-Control-Allow-Headers' => 'Content-Type, X-Auth-Token, Origin, Authorization, X-Requested-With',
+        'Access-Control-Allow-Credentials' => 'true',
+    ];
+    public function handle($request, Closure $next)
 {
-  public function handle($request, Closure $next)
-  {
-    return $next($request)
-       //Url a la que se le dará acceso en las peticiones
-      ->header("Access-Control-Allow-Origin", "*")
-      //Métodos que a los que se da acceso
-      ->header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
-      //Headers de la petición
-      ->header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, X-Token-Auth, Authorization"); 
-  }
+    if ($request->isMethod('OPTIONS')) {
+        return response()->json('{"method":"OPTIONS"}', 200, $this->headers);
+    }
+
+    $response = $next($request);
+    foreach($this->headers as $key => $value) {
+        $response->header($key, $value);
+    }
+
+    return $response;
+}
 }
