@@ -8,9 +8,13 @@
         <h2>{{ cancion.nombre }}</h2>
         <p>{{ cancion.artista }}</p>
         <div>
+          <ul>
+            <li v-for="categoria in cancion.categorias" :key="categoria.id">
+              {{ categoria.nombre }}
+            </li>
+          </ul>
         </div>
         <iframe width="200" height="115" :src="cancion.urlPlayer" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-  
       </li>
     </ul>
   </div>
@@ -37,7 +41,7 @@ export default {
   methods: {
     async mostrarCanciones() {
       try {
-        const response = await fetch(`${this.ruta}/api/mostrar-canciones`, {
+        const response = await fetch(`${this.ruta}/api/mostrar-canciones-con-categorias`, {
           method: 'GET',
         });
 
