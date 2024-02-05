@@ -40,7 +40,16 @@ class CategoriasController extends Controller
         return response()->json(['categoria' => $categoria]);
     
     }
-
+    public function categoriaPorId($id)
+    {
+        $categoria = Categorias::find($id);
+    
+        if (!$categoria) {
+            return response()->json(['error' => 'Categoria not found'], 404);
+        }
+    
+        return response()->json($categoria);
+    }
     
     public function destroy($id)
     {

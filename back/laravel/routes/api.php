@@ -37,6 +37,10 @@ Route::post('/assign-categories', [Canciones_Categorias::class, 'assignCategorie
 
 Route::get('/mostrar-canciones-con-categorias', [Canciones_Categorias::class, 'mostrarCancionesConCategorias']);
 
+Route::get('/categoria_por_id/{id}', [CategoriasController::class, 'categoriaPorId']);
+Route::get('/lista_canciones_categoria/{id}', [Canciones_Categorias::class, 'listaCancionesCategoria']);
+
+
 Route::post('/register', [AuthController::class, 'register']);
 
 /**RUTAS LOGIN-REGISTER USERS */

@@ -10,11 +10,13 @@
         <div>
           <ul>
             <li class="categorias" v-for="categoria in cancion.categorias" :key="categoria.id">
-              {{ categoria.nombre }}
+              <router-link :to="`/categories/${categoria.id}`">{{categoria.nombre}}</router-link>
             </li>
           </ul>
         </div>
-        <iframe width="200" height="115" :src="cancion.urlPlayer" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe width="200" height="115" :src="cancion.urlPlayer" title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
       </li>
     </ul>
   </div>
@@ -32,13 +34,14 @@ export default {
   },
   computed: {
     cancionesFiltradas() {
-      return this.canciones.filter(cancion => 
+      return this.canciones.filter(cancion =>
         cancion.nombre.toLowerCase().includes(this.filtro.toLowerCase()) ||
         cancion.artista.toLowerCase().includes(this.filtro.toLowerCase())
       );
     }
   },
   methods: {
+  
     async mostrarCanciones() {
       try {
         const response = await fetch(`${this.ruta}/api/mostrar-canciones-con-categorias`, {
@@ -71,9 +74,10 @@ export default {
 </script>
     
 <style scoped>
-body{
+body {
   background-color: #f2f2f2
 }
+
 ul {
   list-style-type: none;
   padding: 0;
@@ -98,7 +102,8 @@ a {
   color: #337ab7;
   text-decoration: none;
 }
-.categorias{
+
+.categorias {
   display: inline;
   margin: 0 5px;
   padding: 5px;

@@ -50,12 +50,12 @@ class CancionesController extends Controller
         return response()->json(['cancion' => $cancion]);
     
 }
-
     
     public function destroy($id)
     {
         Canciones::destroy($id);
         return response()->json(['message' => 'Cancion deleted successfully']);
     }
+    
    
 }

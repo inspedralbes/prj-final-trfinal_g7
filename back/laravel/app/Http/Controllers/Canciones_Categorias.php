@@ -21,4 +21,12 @@ class Canciones_Categorias extends Controller
 
         return response()->json(['message' => 'Categories assigned successfully']);
     }
+    public function listaCancionesCategoria($id)
+{
+    $canciones = Canciones::whereHas('categorias', function ($query) use ($id) {
+        $query->where('categorias.id', $id);
+    })->with('categorias')->get();
+
+    return response()->json($canciones);
+}
 }
