@@ -30,7 +30,7 @@ class CancionesController extends Controller
 
    
     public function update(Request $request, $id)
-{
+    {
     
     
 
@@ -49,7 +49,7 @@ class CancionesController extends Controller
 
         return response()->json(['cancion' => $cancion]);
     
-}
+    }
     
     public function destroy($id)
     {

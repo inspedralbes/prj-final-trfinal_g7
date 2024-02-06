@@ -40,6 +40,7 @@ export default {
     };
 
   },
+  
   computed: {
     cancionesFiltradas() {
       return this.canciones.filter(cancion =>
@@ -89,6 +90,7 @@ export default {
         console.log(data.message);
 
         console.log("Canción eliminada");
+        this.mostrarCanciones()
       } catch (error) {
         console.error('Error al eliminar la canción:', error);
         throw error;
@@ -113,6 +115,7 @@ export default {
         console.log(data.message);
 
         console.log("Canción agregada");
+        this.mostrarCanciones()
       } catch (error) {
         console.error('Error al agregar la canción:', error);
         throw error;

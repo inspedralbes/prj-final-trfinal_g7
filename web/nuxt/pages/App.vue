@@ -10,13 +10,15 @@
         <div>
           <ul>
             <li class="categorias" v-for="categoria in cancion.categorias" :key="categoria.id">
-              <nuxt-link :to="'/categories/' + categoria.id">{{categoria.nombre}}</nuxt-link>,
+              <nuxt-link :to="`/${categoria.id}`">
+                {{ categoria.nombre }}
+              </nuxt-link>
             </li>
           </ul>
         </div>
-        <iframe width="200" height="115" :src="cancion.urlPlayer" title="YouTube video player" frameborder="0"
+        <!-- <iframe width="200" height="115" :src="cancion.urlPlayer" title="YouTube video player" frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen></iframe>
+          allowfullscreen></iframe> -->
       </li>
     </ul>
   </div>
@@ -64,6 +66,7 @@ export default {
     },
   },
   async created() {
+    console.log("APP CREAR");
     try {
       await this.mostrarCanciones();
     } catch (error) {
