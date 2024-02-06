@@ -10,7 +10,7 @@
         <div>
           <ul>
             <li class="categorias" v-for="categoria in cancion.categorias" :key="categoria.id">
-              <router-link :to="`/categories/${categoria.id}`">{{categoria.nombre}}</router-link>
+              <nuxt-link :to="'/categories/' + categoria.id">{{categoria.nombre}}</nuxt-link>,
             </li>
           </ul>
         </div>
@@ -41,7 +41,7 @@ export default {
     }
   },
   methods: {
-  
+
     async mostrarCanciones() {
       try {
         const response = await fetch(`${this.ruta}/api/mostrar-canciones-con-categorias`, {

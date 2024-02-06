@@ -15,6 +15,7 @@
   
   <script>
 export default {
+  
   async asyncData({ params }) {
     const ruta = 'http://localhost:8000';
     try {

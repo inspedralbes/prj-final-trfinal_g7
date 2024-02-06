@@ -6,7 +6,7 @@
 </template>
 <style>
 body {
-  background-image: url('/fondoLanding.avif');
+  background-image: url('/images.jfif');
   background-size: cover;
   background-position: center;
 }
