@@ -1,48 +1,27 @@
-<?php
-
+<?php 
 namespace App\Http\Controllers;
-use App\Models\listaSemanal; 
+
 use Illuminate\Http\Request;
+use App\Models\ListaSemanal;
 
-class listaSemanalController extends Controller
+class ListaSemanalController extends Controller
 {
-    public function index()
+    public function aceptarListaSemanal(Request $request)
     {
-        $canciones = listaSemanal::all();
-        return response()->json(['cancionesSemanales' => $canciones]);
-    }
-
+        $semana = date('W');
     
-    public function store(Request $request)
-    {
-        $cancion = listaSemanal::create($request->all());
-        return response()->json(['cancionesSemanales' => $cancion]);
-    }
-
-   
-    public function update(Request $request, $id)
-    {
-
-    $request->validate([
-        'nombre' => '',
-        'artista' => '',
-        'url' => '',
-    ]);
-    $cancion = listaSemanal::find($id);
-   
-        $cancion->nombre = $request->input('nombre', $cancion->nombre);
-        $cancion->artista = $request->input('artista', $cancion->artista);
-        $cancion->url = $request->input('url', $cancion->url);
-        $cancion->urlPlayer = $request->input('urlPlayer', $cancion->urlPlayer);
-        $cancion->save();
-
-        return response()->json(['cancionesSemanales' => $cancion]);
+        foreach ($request->canciones as $cancion) {
+            $lista = new ListaSemanal;
+            $lista->nombre = $cancion['nombre'];
+            $lista->artista = $cancion['artista'];
+            $lista->url = $cancion['url'];
+            $lista->urlPlayer = $cancion['urlPlayer'];
+            $lista->categoria_id = $request->categoriaId;
+            $lista->semana = $semana;
+            $lista->save();
+        }
     
-    }
-    
-    public function destroy($id)
-    {
-        listaSemanal::destroy($id);
-        return response()->json(['message' => 'Cancion deleted successfully']);
+        return response()->json(['message' => 'Lista semanal aceptada'], 201);
     }
 }
+?>

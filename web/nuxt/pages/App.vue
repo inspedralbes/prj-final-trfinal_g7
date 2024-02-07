@@ -3,6 +3,8 @@
     <h2>¡Bienvenido, {{ username }}!</h2>
     <p>Has iniciado sesión correctamente.</p>
     <input type="text" v-model="filtro" placeholder="Buscar canción o artista">
+    <nuxt-link :to="`/prova`">Votaciones Abiertas</nuxt-link>
+
     <ul>
       <li v-for="cancion in cancionesFiltradas" :key="cancion.id">
         <h2>{{ cancion.nombre }}</h2>
@@ -15,10 +17,11 @@
               </nuxt-link>
             </li>
           </ul>
+    
         </div>
-         <iframe width="200" height="115" :src="cancion.urlPlayer" title="YouTube video player" frameborder="0"
+        <iframe width="200" height="115" :src="cancion.urlPlayer" title="YouTube video player" frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen></iframe> 
+          allowfullscreen></iframe>
       </li>
     </ul>
   </div>
@@ -32,6 +35,9 @@ export default {
       canciones: [],
       filtro: '',
       ruta: 'http://localhost:8000',
+      categorias: [],
+      categoriaSeleccionada: '',
+
     };
   },
   computed: {
@@ -43,10 +49,9 @@ export default {
     }
   },
   methods: {
-
-    async mostrarCanciones() {
+    async mostrarCategorias() {
       try {
-        const response = await fetch(`${this.ruta}/api/mostrar-canciones-con-categorias`, {
+        const response = await fetch(`${this.ruta}/api/mostrar-categorias`, {
           method: 'GET',
         });
 
@@ -55,24 +60,44 @@ export default {
         }
 
         const data = await response.json();
-        this.canciones = data.canciones;
+        this.categorias = data.categorias;
         console.log(data.message);
-        console.log(this.canciones)
-        console.log("Canciones mostradas");
+        console.log(this.categorias)
+        console.log("Categorías mostradas");
       } catch (error) {
-        console.error('Error al mostrar ocupantes:', error);
+        console.error('Error al mostrar categorías:', error);
         throw error;
       }
     },
-  },
-  async created() {
-    console.log("APP CREAR");
+  async mostrarCanciones() {
     try {
-      await this.mostrarCanciones();
+      const response = await fetch(`${this.ruta}/api/mostrar-canciones-con-categorias`, {
+        method: 'GET',
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error en la solicitud: ${response.status}`);
+      }
+
+      const data = await response.json();
+      this.canciones = data.canciones;
+      console.log(data.message);
+      console.log(this.canciones)
+      console.log("Canciones mostradas");
     } catch (error) {
-      console.error('Error al obtener las canciones:', error);
+      console.error('Error al mostrar ocupantes:', error);
+      throw error;
     }
   },
+},
+  async created() {
+  console.log("APP CREAR");
+  try {
+    await this.mostrarCanciones();
+  } catch (error) {
+    console.error('Error al obtener las canciones:', error);
+  }
+},
 };
 </script>
     

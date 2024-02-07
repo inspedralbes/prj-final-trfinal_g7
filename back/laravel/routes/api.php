@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CancionesController;
 use App\Http\Controllers\CategoriasController;
+use App\Http\Controllers\ListaSemanalController;
 use App\Http\Controllers\Canciones_Categorias;
 use App\Http\Controllers\AuthController;
 use App\Http\Middleware\Cors;
@@ -39,7 +40,7 @@ Route::get('/mostrar-canciones-con-categorias', [Canciones_Categorias::class, 'm
 
 Route::get('/categoria_por_id/{id}', [CategoriasController::class, 'categoriaPorId']);
 Route::get('/lista_canciones_categoria/{id}', [Canciones_Categorias::class, 'listaCancionesCategoria']);
-
+Route::post('/aceptar-lista-semanal', [ListaSemanalController::class, 'aceptarListaSemanal']);
 
 Route::post('/register', [AuthController::class, 'register']);
 

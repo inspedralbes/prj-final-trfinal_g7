@@ -13,6 +13,8 @@ class listaSemanal extends Model
         'nombre',
         'artista',
         'url',
-        'urlPlayer'
+        'urlPlayer',
+        'categoria_id',  
+        'semana'  
     ];
 }
