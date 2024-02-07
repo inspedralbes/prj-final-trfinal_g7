@@ -28,13 +28,13 @@ export default {
             categorias: [],
             categoriaSeleccionada: '',
             ruta: 'http://localhost:8000',
-            canciones: [],  
+            canciones: [],
         };
     },
     methods: {
         // ...
         async mostrarCancionesPorCategoria() {
-            console.log(this.categoriaSeleccionada+"categoria seleccionada");
+            console.log(this.categoriaSeleccionada + "categoria seleccionada");
             try {
                 const response = await fetch(`${this.ruta}/api/lista_canciones_categoria/${this.categoriaSeleccionada}`, {
                     method: 'GET',
@@ -55,13 +55,16 @@ export default {
             }
         },
         agregarAListaSemanal(cancion) {
-            console.log(cancion+"cancion");
+            console.log(cancion + "cancion");
             if (this.listaSemanal.length < 7) {
-                this.listaSemanal.push(cancion);
+                this.listaSemanal.push({
+                    id: cancion.id,
+                    nombre: cancion.nombre
+                });
             } else {
                 console.log('Ya has seleccionado 7 canciones');
             }
-            console.log(this.listaSemanal+"lista semanal");
+            console.log(this.listaSemanal + "lista semanal");
         },
         async aceptarListaSemanal() {
             try {
@@ -103,7 +106,7 @@ export default {
             }
 
             const data = await response.json();
-            this.categorias = data.categoria;  
+            this.categorias = data.categoria;
             console.log(this.categorias);
         } catch (error) {
             console.error('Error al cargar las categorías:', error);

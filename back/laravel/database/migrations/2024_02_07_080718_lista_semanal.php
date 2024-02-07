@@ -11,9 +11,8 @@ return new class extends Migration
         Schema::create('lista_semanal', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('artista');
-            $table->string('url');
-            $table->string('urlPlayer');
+            $table->integer('categoria_id');
+            $table->integer('semana');
             $table->timestamps();
         });
     }

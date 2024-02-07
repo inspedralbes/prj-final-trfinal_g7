@@ -11,10 +11,9 @@ class listaSemanal extends Model
     protected $fillable = [
         'id',
         'nombre',
-        'artista',
-        'url',
-        'urlPlayer',
         'categoria_id',  
         'semana'  
     ];
+   protected $table = 'lista_semanal';
+
 }
