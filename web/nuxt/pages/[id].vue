@@ -10,6 +10,7 @@
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen></iframe>
       </li>
+      <button @click="añadirVoto(cancion.id)">Votar</button>
     </ul>
     <p v-else>No hay canciones disponibles</p>
   </div>
@@ -20,13 +21,22 @@ export default {
   data() {
     return {
       canciones: [],
-      categoria: null
+      categoria: null,
+      votacio
     };
   },
   created() {
     this.loadData();
   },
   methods: {
+    añadirVoto(id) {
+      const votacion = this.votaciones.find(v => v.idCancion === id);
+      if (votacion) {
+        votacion.votos++;
+      } else {
+        this.votaciones.push({ idCancion: id, votos: 1 });
+      }
+    },
     async loadData() {
       const id = this.$route.params.id;
       const ruta = 'http://localhost:8000';
