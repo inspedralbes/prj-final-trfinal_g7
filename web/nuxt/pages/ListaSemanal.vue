@@ -18,56 +18,67 @@ export default {
     data() {
         return {
             canciones: [],
-            ruta: 'http://localhost:8000', // Ruta del servidor Socket.IO
+            ruta: 'http://localhost:8000',
             votos: [],
         };
     },
     async mounted() {
-    this.socket = io(this.ruta);
-    this.socket.on('actualizacionVotos', (votaciones) => {
-        this.votos = votaciones;
-    });
-    try {
-        const response = await fetch(`${this.ruta}/canciones`);
-        if (!response.ok) {
-            throw new Error(`Error en la solicitud: ${response.status}`);
+        try {
+            const response = await fetch(`${this.ruta}/api/lista-semanal`);
+            if (!response.ok) {
+                throw new Error(`Error en la solicitud: ${response.status}`);
+            }
+            const data = await response.json();
+            this.canciones = data;
+        } catch (error) {
+            console.error('Error al obtener la lista semanal:', error);
         }
-        this.canciones = await response.json();
-    } catch (error) {
-        console.error('Error al cargar las canciones:', error);
-    }
-},
+        this.socket = io('http://localhost:3123');
+        this.socket.on('actualizacionVotos', (votaciones) => {
+            this.votos = votaciones;
+        });
+    },
     methods: {
         async votar(cancionId) {
-            // Verificar si ya se ha votado por esta canción
+            if (this.votos.length >= 7) {
+                console.log('Ya has votado 7 veces');
+                return;
+            }
+            if (this.votos.includes(cancionId)) {
+                console.log('Ya has votado por esta canción');
+                return;
+            }
+            try {
+                const response = await fetch(`${this.ruta}/api/votar`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        cancionId: cancionId,
+                    }),
+                });
+                if (!response.ok) {
+                    throw new Error(`Error en la solicitud: ${response.status}`);
+                }
+                const data = await response.json();
+                console.log(data.message);
+               
+                this.votos.push(cancionId);
+            } catch (error) {
+                console.error('Error al votar:', error);
+            }
             if (this.votos.some(voto => voto.id === cancionId)) {
                 console.log('Ya has votado por esta canción');
                 return;
             }
 
-            try {
-                // Realizar la llamada al servidor para votar
-                const response = await fetch(`${this.ruta}/votar`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ cancionId }),
-                });
-
-                if (!response.ok) {
-                    throw new Error(`Error en la solicitud: ${response.status}`);
-                }
-
-                const data = await response.json();
-                console.log(data.message);
-            } catch (error) {
-                console.error('Error al votar:', error);
-            }
+            // Emitir el evento 'votar' al servidor
+            this.socket.emit('votar', cancionId);
         },
         obtenerVotos(cancionId) {
             // Contar los votos para la canción actual
-            return this.votos.filter(voto => voto.id === cancionId).length;
+            return this.votos.filter(voto => voto.cancionId === cancionId).length;
         },
     },
 };
