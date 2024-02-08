@@ -18,17 +18,25 @@ export default {
     data() {
         return {
             canciones: [],
-            ruta: 'http://localhost:3123', // Ruta del servidor Socket.IO
+            ruta: 'http://localhost:8000', // Ruta del servidor Socket.IO
             votos: [],
         };
     },
-    mounted() {
-        // Inicializar la conexión con el servidor de Socket.IO
-        this.socket = io(this.ruta);
-        this.socket.on('actualizacionVotos', (votaciones) => {
-            this.votos = votaciones;
-        });
-    },
+    async mounted() {
+    this.socket = io(this.ruta);
+    this.socket.on('actualizacionVotos', (votaciones) => {
+        this.votos = votaciones;
+    });
+    try {
+        const response = await fetch(`${this.ruta}/canciones`);
+        if (!response.ok) {
+            throw new Error(`Error en la solicitud: ${response.status}`);
+        }
+        this.canciones = await response.json();
+    } catch (error) {
+        console.error('Error al cargar las canciones:', error);
+    }
+},
     methods: {
         async votar(cancionId) {
             // Verificar si ya se ha votado por esta canción
@@ -64,3 +72,6 @@ export default {
     },
 };
 </script>
+<style>
+
+</style>
