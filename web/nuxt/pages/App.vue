@@ -19,9 +19,9 @@
           </ul>
     
         </div>
-        <iframe width="200" height="115" :src="cancion.urlPlayer" title="YouTube video player" frameborder="0"
+       <!--  <iframe width="200" height="115" :src="cancion.urlPlayer" title="YouTube video player" frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen></iframe>
+          allowfullscreen></iframe> -->
       </li>
     </ul>
   </div>
