@@ -15,7 +15,7 @@ const io = new Server(server, {
     },
 });
 
-const votaciones = [];
+let votaciones = [];
 
 io.on('connection', (socket) => {
     console.log("Se ha conectado alguien!! con id " + socket.id);
