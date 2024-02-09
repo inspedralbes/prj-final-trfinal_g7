@@ -15,7 +15,7 @@ const io = new Server(server, {
 });
 
 let votaciones = [];
-let messages = []; // Almacena los mensajes del chat
+let messages = []; 
 
 io.on('connection', (socket) => {
     console.log("Se ha conectado alguien!! con id " + socket.id);
@@ -27,13 +27,13 @@ io.on('connection', (socket) => {
         io.emit('actualizacionVotos', votaciones);
     });
 
-    // Cuando el cliente emite un evento 'chat message'
+
     socket.on('chat message', (message) => {
-        // Añade el mensaje al array
         messages.push(message);
-        // Emite un evento 'chat message' a todos los clientes con el mensaje
-        io.emit('chat message', message);
+        socket.broadcast.emit('chat message', message);
     });
+    
+  
 
     socket.on('disconnect', () => {
         console.log("Se ha desconectado alguien!! con id " + socket.id);
