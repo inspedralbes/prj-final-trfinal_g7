@@ -115,3 +115,41 @@ export default {
     // ...
 };
 </script>
+<style scoped>
+body {
+  background-color: #f2f2f2;
+  font-family: Arial, sans-serif;
+}
+
+div {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+label {
+  font-size: 16px;
+  color: #333;
+  display: block;
+  margin-bottom: 5px;
+}
+
+select, input[type="checkbox"] {
+  margin-bottom: 20px;
+}
+
+button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #337ab7;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #225588;
+}
+</style>

@@ -1,30 +1,26 @@
 <template>
-  <div>
+  <div class="lista-semanal">
     <h2>Lista semanal para votar</h2>
     <ul>
-      <li v-for="cancion in canciones" :key="cancion.id">
+      <li v-for="cancion in canciones" :key="cancion.id" class="cancion-item">
         <h2>{{ cancion.nombre }}</h2>
         <p>{{ cancion.artista }}</p>
-        <button
-          @click="votar(cancion.id)"
-          :disabled="votos.length >= 7 || votos.includes(cancion.id)"
-        >
-          Votar
-        </button>
+        <button @click="votar(cancion.id)" :disabled="votos.length >= 7">Votar</button>
         <span>{{ obtenerVotos(cancion.id) }}</span>
       </li>
     </ul>
   </div>
 </template>
 <script>
-import io from "socket.io-client";
+import io from 'socket.io-client';
 
 export default {
   data() {
     return {
       canciones: [],
-      ruta: "http://localhost:8000",
+      ruta: 'http://localhost:8000',
       votos: [],
+      votaciones: {},
     };
   },
   async mounted() {
@@ -36,56 +32,98 @@ export default {
       const data = await response.json();
       this.canciones = data;
     } catch (error) {
-      console.error("Error al obtener la lista semanal:", error);
+      console.error('Error al obtener la lista semanal:', error);
     }
-    this.socket = io("http://localhost:3123");
-    this.socket.on("actualizacionVotos", (votaciones) => {
-      this.votos = votaciones;
+    this.socket = io('http://localhost:3123');
+
+    this.socket.on('actualizacionVotos', (votaciones) => {
+
+      this.votaciones = {};
+
+
+      votaciones.forEach(voto => {
+        if (!this.votaciones[voto.cancionId]) {
+          this.votaciones[voto.cancionId] = 0;
+        }
+        this.votaciones[voto.cancionId]++;
+      });
     });
   },
   methods: {
     async votar(cancionId) {
+
       if (this.votos.length >= 7) {
-        console.log("Ya has votado 7 veces");
-        return;
-      }
-      if (this.votos.some((voto) => voto.id === cancionId)) {
-        console.log("Ya has votado por esta canción");
-        return;
-      }
-      try {
-        const response = await fetch(`${this.ruta}/api/votar`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            cancionId: cancionId,
-          }),
-        });
-        if (!response.ok) {
-          throw new Error(`Error en la solicitud: ${response.status}`);
-        }
-        const data = await response.json();
-        console.log(data.message);
-
-        this.votos.push({ id: cancionId });
-      } catch (error) {
-        console.error("Error al votar:", error);
-      }
-      if (this.votos.some((voto) => voto === cancionId)) {
-        console.log("Ya has votado por esta canción");
+        console.log('Ya has votado 7 veces');
         return;
       }
 
-      // Emitir el evento 'votar' al servidor
-      this.socket.emit("votar", cancionId);
+      this.socket.emit('votar', cancionId,1);
+      this.votos.push(cancionId);
+
     },
     obtenerVotos(cancionId) {
-      // Contar los votos para la canción actual
-      return this.votos.filter((voto) => voto.cancionId === cancionId).length;
+
+      return this.votaciones[cancionId] || 0;
     },
   },
 };
 </script>
-<style></style>
+<style scoped>
+.lista-semanal {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.lista-semanal h2 {
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.lista-semanal ul {
+  list-style: none;
+  padding: 0;
+}
+
+.cancion-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cancion-item h2 {
+  font-size: 18px;
+  color: #333;
+}
+
+.cancion-item p {
+  font-size: 16px;
+  color: #666;
+}
+
+.cancion-item button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #337ab7;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.cancion-item button:hover {
+  background-color: #225588;
+}
+</style>

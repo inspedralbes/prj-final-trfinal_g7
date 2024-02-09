@@ -19,9 +19,9 @@
           </ul>
     
         </div>
-       <!--  <iframe width="200" height="115" :src="cancion.urlPlayer" title="YouTube video player" frameborder="0"
+        <iframe width="200" height="115" :src="cancion.urlPlayer" title="YouTube video player" frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen></iframe> -->
+          allowfullscreen></iframe> 
       </li>
     </ul>
   </div>
@@ -103,46 +103,67 @@ export default {
     
 <style scoped>
 body {
-  background-color: #f2f2f2
+  background-color: #f2f2f2;
+  font-family: Arial, sans-serif;
+}
+
+div {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+nuxt-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #337ab7;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-bottom: 20px;
 }
 
 ul {
-  list-style-type: none;
+  list-style: none;
   padding: 0;
 }
 
 li {
-  margin: 10px 0;
-  padding: 10px;
-  border: 1px solid #ccc;
+  background-color: #d2c4ff;
+  padding: 20px;
   border-radius: 5px;
-}
-
-h2 {
-  margin: 0 0 5px;
-}
-
-p {
-  margin: 0 0 10px;
-}
-
-a {
-  color: #337ab7;
-  text-decoration: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
 
 .categorias {
-  display: inline;
-  margin: 0 5px;
-  padding: 5px;
-  border: 1px solid #ccc;
+  display: inline-block;
+  margin-right: 10px;
+  padding: 5px 10px;
+  background-color: #eee;
   border-radius: 5px;
-  background-color: #f2f2f2;
-  color: #000;
-  font-size: 12px;
-  font-weight: bold;
+  font-size: 14px;
   text-transform: uppercase;
-  cursor: pointer;
-  margin-left: 25%;
+  color: #333;
 }
 </style>

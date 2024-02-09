@@ -21,7 +21,7 @@ io.on('connection', (socket) => {
     console.log("Se ha conectado alguien!! con id " + socket.id);
 
     socket.on('votar', (cancionId) => {
-        votaciones.push({ id: socket.id, cancionId });
+        votaciones.push({ id: socket.id, cancionId, numeroVotos });
         console.log('Voto registrado para la canción con ID:', cancionId);
 
         io.emit('actualizacionVotos', votaciones);

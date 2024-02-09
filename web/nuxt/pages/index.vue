@@ -23,10 +23,10 @@ export default {
     };
   },
   mounted() {
-    // Inicializar la conexión con el servidor de Socket.IO
+ 
     this.socket = io('http://localhost:3123');
 
-    // Escuchar eventos del servidor
+
     this.socket.on('connect', () => {
       console.log('Conectado al servidor de Socket.io');
     });
@@ -41,16 +41,16 @@ export default {
   },
   methods: {
     redirectToLogin() {
-      // Redirige a la ruta '/components/Login'
+   
       this.$router.push('/components/Login');
     },
     register() {
       alert('Botón de Registro presionado');
-      // Agrega la lógica de redirección o cualquier otra acción necesaria
+      
     },
     admin() {
       alert('Botón de Admin presionado');
-      // Agrega la lógica de redirección o cualquier otra acción necesaria
+
     },
     peticionJugar() {
       const datos = {
@@ -63,3 +63,36 @@ export default {
   },
 };
 </script>
+<style scoped>
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f2f2f2;
+  font-family: Arial, sans-serif;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 24px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.navigation-links {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.link {
+  color: #337ab7;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: #225588;
+}
+</style>
