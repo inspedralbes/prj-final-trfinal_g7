@@ -3,10 +3,14 @@
     <h2>Lista semanal para votar</h2>
     <ul>
       <li v-for="cancion in canciones" :key="cancion.id" class="cancion-item">
-        <h2>{{ cancion.nombre }}</h2>
-        <p>{{ cancion.artista }}</p>
-        <button @click="votar(cancion.id)" :disabled="votos.length >= 7">Votar</button>
-        <span>{{ obtenerVotos(cancion.id) }}</span>
+        <div class="cancion-info">
+          <h2>{{ cancion.nombre }}</h2>
+          <p>{{ cancion.artista }}</p>
+        </div>
+        <div class="cancion-votos">
+          <button @click="votar(cancion.id)" :disabled="votos.length >= 7">Votar</button>
+          <span>{{ obtenerVotos(cancion.id) }}</span>
+        </div>
       </li>
     </ul>
   </div>
@@ -37,9 +41,12 @@ export default {
     this.socket = io('http://localhost:3123');
 
     this.socket.on('actualizacionVotos', (votaciones) => {
+      if (!Array.isArray(votaciones)) {
+        console.error('votaciones is not an array:', votaciones);
+        return;
+      }
 
       this.votaciones = {};
-
 
       votaciones.forEach(voto => {
         if (!this.votaciones[voto.cancionId]) {
@@ -57,7 +64,7 @@ export default {
         return;
       }
 
-      this.socket.emit('votar', cancionId,1);
+      this.socket.emit('votar', cancionId, 1);
       this.votos.push(cancionId);
 
     },
@@ -94,12 +101,21 @@ export default {
 .cancion-item {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 20px;
   padding: 20px;
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cancion-info {
+  flex-grow: 1;
+}
+
+.cancion-votos {
+  display: flex;
+  align-items: center;
 }
 
 .cancion-item h2 {
