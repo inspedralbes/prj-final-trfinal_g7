@@ -10,12 +10,12 @@ const port = 3123;
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        // origin: '*',
         methods: ['GET', 'POST'],
     },
 });
 
 let votaciones = [];
+let messages = []; // Almacena los mensajes del chat
 
 io.on('connection', (socket) => {
     console.log("Se ha conectado alguien!! con id " + socket.id);
@@ -25,6 +25,14 @@ io.on('connection', (socket) => {
         console.log('Voto registrado para la canción con ID:', cancionId);
 
         io.emit('actualizacionVotos', votaciones);
+    });
+
+    // Cuando el cliente emite un evento 'chat message'
+    socket.on('chat message', (message) => {
+        // Añade el mensaje al array
+        messages.push(message);
+        // Emite un evento 'chat message' a todos los clientes con el mensaje
+        io.emit('chat message', message);
     });
 
     socket.on('disconnect', () => {

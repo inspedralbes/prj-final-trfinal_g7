@@ -1,13 +1,28 @@
 <template>
     <div>
       <h3>Lista más votada</h3>
-      <!-- Aquí iría la lógica para mostrar la lista más votada -->
+      <ul v-if="songs.length">
+        <li v-for="song in songs" :key="song.id">
+          {{ song.name }} - {{ song.votes }} votos
+        </li>
+      </ul>
+      <p v-else>No hay canciones disponibles</p>
     </div>
   </template>
   
   <script>
   export default {
     name: 'MostVotedList',
-    // Aquí iría la lógica para obtener la lista más votada
+    data() {
+      return {
+        songs: [],
+      };
+    },
+    async created() {
+      //  obtener la lista más votada
+   
+      //const response = await fetch('http://localhost:8000/api/most_voted_songs');
+      //this.songs = await response.json();
+    },
   };
   </script>

@@ -1,13 +1,27 @@
 <template>
     <div>
       <h3>Ranking de canciones</h3>
-      <!-- Aquí iría la lógica para mostrar el ranking de canciones -->
+      <ul v-if="songs.length">
+        <li v-for="song in songs" :key="song.id">
+          {{ song.name }} - {{ song.votes }} votos
+        </li>
+      </ul>
+      <p v-else>No hay canciones disponibles</p>
     </div>
   </template>
   
   <script>
   export default {
     name: 'SongRanking',
-    // Aquí iría la lógica para obtener el ranking de canciones
+    data() {
+      return {
+        songs: [],
+      };
+    },
+    async created() {
+      //obtener el ranking de canciones
+      //const response = await fetch('http://localhost:8000/api/songs_ranking');
+      //this.songs = await response.json();
+    },
   };
   </script>

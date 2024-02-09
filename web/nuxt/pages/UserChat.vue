@@ -1,13 +1,36 @@
 <template>
     <div>
       <h3>Chat de usuarios</h3>
-      <!-- Aquí iría la lógica para mostrar el chat de usuarios -->
+      <div v-for="message in messages" :key="message.id">
+        <strong>{{ message.user }}:</strong> {{ message.text }}
+      </div>
+      <input v-model="newMessage" @keyup.enter="sendMessage">
     </div>
   </template>
   
   <script>
+  import io from 'socket.io-client';
+  
   export default {
     name: 'UserChat',
-    // Aquí iría la lógica para manejar el chat de usuarios
+    data() {
+      return {
+        messages: [],
+        newMessage: '',
+        socket: null,
+      };
+    },
+    created() {
+      this.socket = io('http://localhost:3123');
+      this.socket.on('chat message', (message) => {
+        this.messages.push(message);
+      });
+    },
+    methods: {
+      sendMessage() {
+        this.socket.emit('chat message', { user: 'Usuario 1', text: this.newMessage });
+        this.newMessage = '';
+      },
+    },
   };
   </script>
