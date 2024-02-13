@@ -24,24 +24,34 @@ export default {
       loginForm: {
         email: '',
         password: '',
-      }
+      },
+      ruta: 'http://localhost:8000',
     };
   },
   methods: {
     async login() {
-      const response = await fetch(`${this.ruta}/api/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(this.loginForm),
-      });
-      if (response.ok) {
-       console.log('Usuario logeado');
-      } else {
-      console.log('Error al logear usuario');
+      try {
+        const response = await fetch(`${this.ruta}/api/login`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(this.loginForm),
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log('Usuario logeado');
+
+          localStorage.setItem('token', data.token);
+
+          this.$router.push('/ListaSemanal');
+        } else {
+          console.log('Error al logear usuario');
+        }
+      } catch (error) {
+        console.error('Error al iniciar sesión:', error);
       }
-      this.$router.push('/app');
     },
   },
 };

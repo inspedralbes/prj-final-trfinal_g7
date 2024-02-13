@@ -13,6 +13,17 @@ class Kernel extends HttpKernel
      *
      * @var array<int, class-string|string>
      */
+    protected $middlewarePriority = [
+        \Illuminate\Cookie\Middleware\EncryptCookies::class,
+        \Illuminate\Session\Middleware\StartSession::class,
+        // Asegúrate de que el middleware de autenticación se ejecute antes de tu middleware personalizado
+        \Illuminate\Auth\Middleware\Authenticate::class,
+    ];
+    protected $routeMiddleware = [
+        // Otros middlewares...
+        'auth' => \App\Http\Middleware\Authenticate::class,
+        'cors' => \App\Http\Middleware\Cors::class,
+];
     protected $middleware = [
         // \App\Http\Middleware\TrustHosts::class,
         \App\Http\Middleware\Cors::class,
@@ -25,6 +36,7 @@ class Kernel extends HttpKernel
 
 
         ];
+   
     /**
      * The application's route middleware groups.
      *

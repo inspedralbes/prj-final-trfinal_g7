@@ -20,6 +20,12 @@ class ListaSemanalController extends Controller
     
         return response()->json(['message' => 'Lista semanal aceptada'], 201);
     }
+    public function borrarListaSemanal(Request $request)
+    {
+        ListaSemanal::truncate();
+
+        return response()->json(['message' => 'Lista semanal borrada']);
+    }
     public function obtenerListaSemanal(Request $request)
     {
         $semanaActual = Carbon::now()->weekOfYear;

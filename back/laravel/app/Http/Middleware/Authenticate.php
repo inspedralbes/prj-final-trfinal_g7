@@ -2,16 +2,29 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Illuminate\Support\Facades\Log;
 
 class Authenticate extends Middleware
 {
-    /**
-     * Get the path the user should be redirected to when they are not authenticated.
-     */
-    protected function redirectTo(Request $request): ?string
+    public function handle($request, Closure $next, ...$guards)
     {
-        return $request->expectsJson() ? null : route('login');
+        $token = $request->bearerToken();
+        Log::info('Hanlde-Token: ' . $token);
+        if (Auth::guard('sanctum')->check()) {
+            return $next($request);
+        }else{
+            Log::info('Hanlde-autenticado', 'El usuario no está autenticado');
+        }
+        
+        $ret = ['message' => 'Unauthorized',
+                'custom' => 'El usuario no está autenticado',
+                'token' => $token,
+                ];
+
+        return response()->json($ret, 401);
     }
 }

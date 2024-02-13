@@ -52,6 +52,7 @@ export default {
       } else {
         console.log('Error al registrar usuario');
       }
+      this.$router.push('/login');
     },
   },
 };

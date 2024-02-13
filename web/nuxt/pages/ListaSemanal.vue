@@ -5,15 +5,13 @@
       <li v-for="cancion in canciones" :key="cancion.id">
         <h2>{{ cancion.nombre }}</h2>
         <p>{{ cancion.artista }}</p>
-        <button
-          @click="votar(cancion.id)"
-          :disabled="votos.length >= 7 || votos.includes(cancion.id)"
-        >
+        <button @click="votar(cancion.id)" :disabled="votos.length >= 7 || votos.includes(cancion.id)">
           Votar
         </button>
         <span>{{ obtenerVotos(cancion.id) }}</span>
       </li>
     </ul>
+    <button @click="borrarListaSemanal">Borrar lista semanal</button>
   </div>
 </template>
 <script>
@@ -45,20 +43,22 @@ export default {
   },
   methods: {
     async votar(cancionId) {
-      if (this.votos.length >= 7) {
-        console.log("Ya has votado 7 veces");
-        return;
-      }
-      if (this.votos.some((voto) => voto.id === cancionId)) {
-        console.log("Ya has votado por esta canción");
-        return;
-      }
+      const token = localStorage.getItem('token');
+      console.log(token); // Añade esta línea
       try {
+        if (!token) {
+          // El token de autenticación no está presente, redirige al usuario a la página de inicio de sesión
+          this.$router.push('/login');
+          return;
+        }
+        const headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        headers.append("Accept", 'application/json');
+        headers.append("Authorization", `Bearer ${token}`);
+
         const response = await fetch(`${this.ruta}/api/votar`, {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: headers,
           body: JSON.stringify({
             cancionId: cancionId,
           }),
@@ -69,20 +69,33 @@ export default {
         const data = await response.json();
         console.log(data.message);
 
+        if (this.votos.length >= 7) {
+          console.log("Ya has votado 7 veces");
+          return;
+        }
+        if (this.votos.some((voto) => voto.id === cancionId)) {
+          console.log("Ya has votado por esta canción");
+          return;
+        }
+
         this.votos.push({ id: cancionId });
       } catch (error) {
         console.error("Error al votar:", error);
       }
-      if (this.votos.some((voto) => voto === cancionId)) {
-        console.log("Ya has votado por esta canción");
-        return;
-      }
 
-      // Emitir el evento 'votar' al servidor
       this.socket.emit("votar", cancionId);
     },
+    borrarListaSemanal() {
+      fetch(`${this.ruta}/api/borrar-lista-semanal`, {
+        method: 'DELETE',
+      })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    },
     obtenerVotos(cancionId) {
-      // Contar los votos para la canción actual
       return this.votos.filter((voto) => voto.cancionId === cancionId).length;
     },
   },

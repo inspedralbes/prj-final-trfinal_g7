@@ -24,7 +24,6 @@ class AuthController extends Controller
 
         $user->save();
 
-        // Crear token
         $token = $user->createToken('soundsync')->plainTextToken;
 
         $response = [
@@ -48,7 +47,7 @@ class AuthController extends Controller
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json(['message' => 'No estás registrado'], 401);
         }
-
+        $token = $user->createToken('soundsync')->plainTextToken;
         $response = [
             'user' => $user,
             'token' => $token,

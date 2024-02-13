@@ -56,13 +56,13 @@ export default {
         },
         agregarAListaSemanal(cancion) {
             console.log(cancion + "cancion");
-            if (this.listaSemanal.length < 7) {
+            if (this.listaSemanal.length < 9) {
                 this.listaSemanal.push({
                     id: cancion.id,
                     nombre: cancion.nombre
                 });
             } else {
-                console.log('Ya has seleccionado 7 canciones');
+                console.log('Ya has seleccionado 10 canciones');
             }
             console.log(this.listaSemanal + "lista semanal");
         },
