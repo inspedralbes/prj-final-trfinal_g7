@@ -3,7 +3,7 @@
         <h3>Chat de usuarios</h3>
         <div class="chat-container">
             <div v-for="(message, index) in messages" :key="index">
-                <strong>{{ message.user }}:</strong> {{ message.text }}
+                <strong>User:</strong> {{ message.text }}
             </div>
         </div>
         <input v-model="newMessage" @keyup.enter="sendMessage">

@@ -100,27 +100,29 @@ export default {
 },
 };
 </script>
-    
 <style scoped>
 body {
-  background-color: #f2f2f2;
-  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  font-family: 'Roboto', sans-serif;
 }
 
 div {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 28px;
   color: #333;
   margin-bottom: 10px;
 }
 
 p {
-  font-size: 16px;
+  font-size: 18px;
   color: #666;
   margin-bottom: 20px;
 }
@@ -128,9 +130,10 @@ p {
 input[type="text"] {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #9e9e9e;
   border-radius: 5px;
   margin-bottom: 20px;
+  font-size: 16px;
 }
 
 nuxt-link {
@@ -141,6 +144,11 @@ nuxt-link {
   text-decoration: none;
   border-radius: 5px;
   margin-bottom: 20px;
+  transition: background-color 0.3s ease;
+}
+
+nuxt-link:hover {
+  background-color: #286090;
 }
 
 ul {
@@ -149,7 +157,7 @@ ul {
 }
 
 li {
-  background-color: #d2c4ff;
+  background-color: #dedede;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -160,10 +168,18 @@ li {
   display: inline-block;
   margin-right: 10px;
   padding: 5px 10px;
-  background-color: #eee;
+  background-color: #e6e6fa;
   border-radius: 5px;
   font-size: 14px;
   text-transform: uppercase;
   color: #333;
+  border: 1px solid #ddd;
+}
+
+iframe {
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+  height: auto;
 }
 </style>
