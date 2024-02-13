@@ -78,7 +78,7 @@ export default {
 <style scoped>
 .lista-semanal {
   width: 100%;
-  max-width: 600px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 20px;
   box-sizing: border-box;
@@ -91,6 +91,7 @@ export default {
   margin-bottom: 20px;
   color: #333;
   text-align: center;
+  font-size: 24px;
 }
 
 .lista-semanal ul {
@@ -101,7 +102,7 @@ export default {
 .cancion-item {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   margin-bottom: 20px;
   padding: 20px;
   background-color: #fff;
@@ -119,7 +120,7 @@ export default {
 }
 
 .cancion-item h2 {
-  font-size: 18px;
+  font-size: 20px;
   color: #333;
 }
 
@@ -137,6 +138,7 @@ export default {
   border-radius: 5px;
   border: none;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .cancion-item button:hover {

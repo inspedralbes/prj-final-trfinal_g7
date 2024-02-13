@@ -50,17 +50,20 @@ export default {
 <style scoped>
 .login-container {
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 2rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-  margin-top: 15%;
+  border-radius: 5px;
+  margin-top: 10%;
+  background-color: #f2f2f2;
 }
 
 .login-title {
   text-align: center;
   margin-bottom: 2rem;
+  font-size: 24px;
+  color: #333;
 }
 
 .login-form {
@@ -70,25 +73,30 @@ export default {
 
 .login-label {
   margin-bottom: 0.5rem;
+  font-size: 18px;
+  color: #333;
 }
 
 .login-input {
   margin-bottom: 1rem;
   padding: 0.5rem;
   border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 5px;
+  font-size: 16px;
 }
 
 .login-button {
   padding: 0.5rem;
   color: #fff;
-  background-color: #007bff;
+  background-color: #337ab7;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
 }
 
 .login-button:hover {
-  background-color: #0056b3;
+  background-color: #225588;
 }
 </style>
