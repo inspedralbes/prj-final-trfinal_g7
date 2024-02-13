@@ -13,7 +13,7 @@ class VotesController extends Controller
         $user = $request->user();
         if (!$user) {
             \Log::warning('El usuario no está autenticado');
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['error' => 'USUARIO NO AUTORIZADO'], 401);
         }
         $cancionId = $request->input('cancionId');
     
