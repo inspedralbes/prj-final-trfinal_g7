@@ -49,9 +49,6 @@ class AuthController extends Controller
             return response()->json(['message' => 'No estás registrado'], 401);
         }
 
-        // Crear token
-        $token = $user->createToken('soundsync')->plainTextToken;
-
         $response = [
             'user' => $user,
             'token' => $token,
