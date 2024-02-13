@@ -31,7 +31,7 @@ export default {
     methods: {
         sendMessage() {
             console.log('Enviando mensaje', this.newMessage);
-            const message = { user: 'Usuario 1', text: this.newMessage };
+            const message = { user: this.socket.idlis, text: this.newMessage };
             this.socket.emit('chat message', message);
             this.messages.push(message);
             this.newMessage = '';
