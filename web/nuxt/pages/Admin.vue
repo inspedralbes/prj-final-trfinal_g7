@@ -29,10 +29,12 @@
   
   <script>
   export default {
+    middleware: 'isAdmin',
     data() {
       return {
         users: [],
         ruta: 'http://localhost:8000',
+       
       };
     },
     async created() {
