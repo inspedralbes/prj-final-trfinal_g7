@@ -45,7 +45,12 @@ export default {
 
           localStorage.setItem('token', data.token);
 
-          this.$router.push('/ListaSemanal');
+          // Verificar el rol del usuario y redirigir a la ruta correspondiente
+          if (data.user.role === 'admin') {
+            this.$router.push('/Admin');
+          } else {
+            this.$router.push('/ListaSemanal');
+          }
         } else {
           console.log('Error al logear usuario');
         }
