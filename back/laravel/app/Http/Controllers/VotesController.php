@@ -10,7 +10,7 @@ class VotesController extends Controller
 {
     public function vote(Request $request)
     {
-        $user = $request->user();
+        $user = auth('sanctum')->user();
         if (!$user) {
             \Log::warning('El usuario no está autenticado');
             return response()->json(['error' => 'USUARIO NO AUTORIZADO'], 401);
