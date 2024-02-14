@@ -9,6 +9,8 @@ use App\Http\Controllers\VotesController;
 use App\Http\Controllers\Canciones_Categorias;
 use App\Http\Controllers\AuthController;
 use App\Http\Middleware\Cors;
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -33,27 +35,32 @@ Route::post('/crear-categoria', [CategoriasController::class, 'store']);
 Route::get('buscar-categoria/{id}', [CategoriasController::class, 'show']);
 Route::put('actualizar-categoria/{id}', [CategoriasController::class, 'update']);
 Route::delete('eliminar-categoria/{id}', [CategoriasController::class, 'destroy']);
-
-
-Route::post('/assign-categories', [Canciones_Categorias::class, 'assignCategories']);
-
-Route::get('/mostrar-canciones-con-categorias', [Canciones_Categorias::class, 'mostrarCancionesConCategorias']);
-
 Route::get('/categoria_por_id/{id}', [CategoriasController::class, 'categoriaPorId']);
 
+/**RUTAS CANCIONES-CATEGORIAS */
+Route::post('/assign-categories', [Canciones_Categorias::class, 'assignCategories']);
+Route::get('/mostrar-canciones-con-categorias', [Canciones_Categorias::class, 'mostrarCancionesConCategorias']);
 Route::get('/lista_canciones_categoria/{id}', [Canciones_Categorias::class, 'listaCancionesCategoria']);
+
+/**RUTAS LISTA SEMANAL */
 Route::post('/aceptar-lista-semanal', [ListaSemanalController::class, 'aceptarListaSemanal']);
 Route::get('/lista-semanal', [ListaSemanalController::class,'obtenerListaSemanal']);
 Route::post('/votar', [VotesController::class, 'vote']);
 
+/**RUTAS USUARIOS */
+Route::get('/users', [UserController::class, 'index']);
+Route::put('/users/{user}', [UserController::class, 'update']);
 
-Route::post('/register', [AuthController::class, 'register']);
+
 
 /**RUTAS LOGIN-REGISTER USERS */
-
 Route::group(['middleware' => 'Cors'], function () {
     Route::post('/login', [AuthController::class, 'login']);
 });
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('/register', [AuthController::class, 'register']);
+
+
+

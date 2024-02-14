@@ -14,4 +14,12 @@ class Authenticate extends Middleware
     {
         return $request->expectsJson() ? null : route('login');
     }
+    /**public function handle($request, Closure $next, $role)
+{
+    if (! $request->user() || ! $request->user()->hasRole($role)) {
+        abort(403);
+    }
+
+    return $next($request);
+} */
 }
