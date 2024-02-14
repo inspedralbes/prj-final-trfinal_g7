@@ -113,6 +113,7 @@ div {
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding-right: 4%;
 }
 
 h2 {
@@ -134,6 +135,7 @@ input[type="text"] {
   border-radius: 5px;
   margin-bottom: 20px;
   font-size: 16px;
+ 
 }
 
 nuxt-link {

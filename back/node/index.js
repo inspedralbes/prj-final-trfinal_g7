@@ -19,7 +19,7 @@ let messages = [];
 
 io.on('connection', (socket) => {
     console.log("Se ha conectado alguien!! con id " + socket.id);
-
+    socket.emit('actualizacionVotos', votaciones);
     socket.on('votar', (cancionId) => {
         votaciones.push({ id: socket.id, cancionId });
         console.log('Voto registrado para la canción con ID:', cancionId);
