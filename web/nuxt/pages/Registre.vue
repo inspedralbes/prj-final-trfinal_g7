@@ -28,6 +28,7 @@ export default {
         name: '',
         email: '',
         password: '',
+        role: 'user'
       },
       loginForm: {
         email: '',
