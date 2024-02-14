@@ -24,16 +24,19 @@
           </tr>
         </tbody>
       </table>
+      <div>{{this.userStore}}</div>
     </div>
   </template>
   
   <script>
+ 
   export default {
     middleware: 'isAdmin',
     data() {
       return {
         users: [],
         ruta: 'http://localhost:8000',
+        userStore: useUserStore()
        
       };
     },

@@ -1,7 +1,10 @@
 // middleware/isAdmin.js
 
-export default function ({ store, redirect }) {
-    if (store.state.user.role !== 'admin') {
-      return redirect('/');
-    }
+export default function ({ redirect, app }) {
+  
+  const userStore = app.$pinia.use('user');
+
+  if (!userStore.isAdmin.value) {
+    return redirect('/');
   }
+}

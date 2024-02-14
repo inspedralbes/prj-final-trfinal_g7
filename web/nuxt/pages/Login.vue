@@ -16,6 +16,8 @@
 </template>
 
 <script>
+ import { useUserStore } from '~/stores/users';
+
 export default {
   data() {
     return {
@@ -30,6 +32,8 @@ export default {
   },
   methods: {
     async login() {
+      const userStore = useUserStore(); 
+
       try {
         const response = await fetch(`${this.ruta}/api/login`, {
           method: 'POST',
@@ -44,7 +48,9 @@ export default {
           console.log('Usuario logeado');
 
           localStorage.setItem('token', data.token);
-
+          console.log("data",data.isAdmin);
+          userStore.setIsAdmin(data.isAdmin); 
+          console.log(userStore.isAdmin);
           this.$router.push('/ListaSemanal');
         } else {
           console.log('Error al logear usuario');

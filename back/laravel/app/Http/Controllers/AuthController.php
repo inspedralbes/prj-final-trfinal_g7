@@ -9,33 +9,33 @@ use App\Models\User;
 class AuthController extends Controller
 {
     public function register(Request $request)
-{
-    $request->validate([
-        'name' => 'required|max:255',
-        'email' => 'required|email|unique:users',
-        'password' => 'required|min:8',
-        'role' => 'required|in:user,admin', 
-    ]);
+    {
+        $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:8',
+            'role' => 'required|in:user,admin',
+        ]);
 
-    $user = new User([
-        'name' => $request->name,
-        'email' => $request->email,
-        'password' => Hash::make($request->password),
-        'role' => $request->role, 
-    ]);
+        $user = new User([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => $request->role,
+        ]);
 
-    $user->save();
+        $user->save();
 
-    $token = $user->createToken('soundsync')->plainTextToken;
+        $token = $user->createToken('soundsync')->plainTextToken;
 
-    $response = [
-        'user' => $user,
-        'token' => $token,
-        'message' => 'Usuario registrado con éxito'
-    ];
+        $response = [
+            'user' => $user,
+            'token' => $token,
+            'message' => 'Usuario registrado con éxito'
+        ];
 
-    return response()->json($response, 201);
-}
+        return response()->json($response, 201);
+    }
 
     public function login(Request $request)
     {
@@ -53,6 +53,7 @@ class AuthController extends Controller
         $response = [
             'user' => $user,
             'token' => $token,
+            'isAdmin' => $user->role === 'admin', 
             'message' => 'Inicio de sesión exitoso'
         ];
 
