@@ -60,10 +60,9 @@ export default {
   methods: {
     async votar(cancionId) {
       const token = localStorage.getItem('token');
-      console.log(token); // Añade esta línea
+      console.log(token); 
       try {
-        if (!token) {
-          // El token de autenticación no está presente, redirige al usuario a la página de inicio de sesión
+        if (!token) {        
           this.$router.push('/login');
           return;
         }

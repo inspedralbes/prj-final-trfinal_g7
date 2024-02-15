@@ -59,5 +59,63 @@
   </script>
   
   <style scoped>
-  /* Agrega aquí tus estilos */
+  .admin-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .admin-title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .admin-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .admin-table th,
+  .admin-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .admin-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .admin-table tr:hover {
+    background-color: #ddd;
+  }
+  
+  .admin-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  button:last-child {
+    margin-right: 0;
+  }
+  
+  button:nth-child(1) {
+    background-color: #4CAF50;
+  }
+  
+  button:nth-child(2) {
+    background-color: #f44336;
+  }
   </style>

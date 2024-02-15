@@ -60,6 +60,11 @@ Route::middleware('auth:sanctum')->post('/votar', [VotesController::class, 'vote
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
+
+/**RUTAS PARA LOS VOTOS*/
+Route::get('/most_voted_songs', 'SongController@mostVoted');
+
+
 // Ruta para obtener información del usuario autenticado
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
