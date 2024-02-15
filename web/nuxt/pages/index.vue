@@ -4,7 +4,7 @@
 
     <div class="navigation-links">
       <router-link class="link" to="/Login">Login</router-link>
-      <router-link class="link" to="/Admin">Admin</router-link>
+      <router-link class="link" to="/Registre">Register</router-link>
     </div>
 
     <router-view></router-view>

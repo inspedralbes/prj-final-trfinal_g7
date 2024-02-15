@@ -56,6 +56,7 @@ Route::group(['middleware' => Cors::class], function () {
 });
 */
 Route::middleware('auth:sanctum')->post('/votar', [VotesController::class, 'vote']);
+Route::get('/canciones/{id}/votos', [VotesController::class, 'cantidadVotosPorCancion']);
 // Rutas para registro y inicio de sesión
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);

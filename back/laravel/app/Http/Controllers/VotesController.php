@@ -37,5 +37,10 @@ class VotesController extends Controller
     
         return response()->json(['message' => 'Voto registrado con éxito']);
     }
+    public function getVotesCountBySong($cancionId)
+    {
+        $voteCount = Vote::where('cancion_id', $cancionId)->count();
+        return response()->json(['voteCount' => $voteCount]);
+    }
     
 }

@@ -1,27 +1,38 @@
 <template>
-    <div>
-      <h3>Ranking de canciones</h3>
-      <ul v-if="songs.length">
-        <li v-for="song in songs" :key="song.id">
-          {{ song.name }} - {{ song.votes }} votos
-        </li>
-      </ul>
-      <p v-else>No hay canciones disponibles</p>
-    </div>
-  </template>
-  
-  <script>
-  export default {
-    name: 'SongRanking',
-    data() {
-      return {
-        songs: [],
-      };
-    },
-    async created() {
-      //obtener el ranking de canciones
-      //const response = await fetch('http://localhost:8000/api/songs_ranking');
-      //this.songs = await response.json();
-    },
-  };
-  </script>
+  <div>
+    <Chart :chartData="chartData" :options="chartOptions" />
+  </div>
+</template>
+
+<script>
+import Chart from '@/components/Chart.vue';
+
+export default {
+  components: {
+    Chart,
+  },
+  data() {
+    return {
+      chartData: {
+        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
+        datasets: [
+          {
+            label: 'Ventas mensuales',
+            data: [65, 59, 80, 81, 56],
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1,
+          },
+        ],
+      },
+      chartOptions: {
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      },
+    };
+  },
+};
+</script>

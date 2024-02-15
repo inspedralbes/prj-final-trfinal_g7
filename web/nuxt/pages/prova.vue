@@ -56,7 +56,7 @@ export default {
         },
         agregarAListaSemanal(cancion) {
             console.log(cancion + "cancion");
-            if (this.listaSemanal.length < 9) {
+            if (this.listaSemanal.length < 10) {
                 this.listaSemanal.push({
                     id: cancion.id,
                     nombre: cancion.nombre
