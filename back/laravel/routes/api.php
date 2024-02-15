@@ -62,7 +62,7 @@ Route::post('/login', [AuthController::class, 'login']);
 
 
 /**RUTAS PARA LOS VOTOS*/
-Route::get('/most_voted_songs', 'SongController@mostVoted');
+Route::get('/canciones-mas-votadas', [CancionesController::class, 'mostVotedSongs']);
 
 
 // Ruta para obtener información del usuario autenticado
