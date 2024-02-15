@@ -13,7 +13,6 @@
         </div>
       </li>
     </ul>
-    <button @click="borrarListaSemanal">Borrar lista semanal</button>
   </div>
 </template>
 <script>
@@ -29,93 +28,54 @@ export default {
     };
   },
   async mounted() {
-  try {
-    // Obtén las canciones
-    const responseCanciones = await fetch(`${this.ruta}/api/lista-semanal`);
-    if (!responseCanciones.ok) {
-      throw new Error(`Error en la solicitud: ${responseCanciones.status}`);
-    }
-    const dataCanciones = await responseCanciones.json();
-    this.canciones = dataCanciones;
+    try {
+      const responseCanciones = await fetch(`${this.ruta}/api/lista-semanal`);
+      if (!responseCanciones.ok) {
+        throw new Error(`Error en la solicitud: ${responseCanciones.status}`);
+      }
+      const dataCanciones = await responseCanciones.json();
+      this.canciones = dataCanciones;
 
-    // Obtén los votos
-    const responseVotos = await fetch(`${this.ruta}/api/votos`);
-    if (!responseVotos.ok) {
-      throw new Error(`Error en la solicitud: ${responseVotos.status}`);
-    }
-    const dataVotos = await responseVotos.json();
-    this.votaciones = dataVotos.reduce((acc, voto) => {
-      acc[voto.cancionId] = (acc[voto.cancionId] || 0) + 1;
-      return acc;
-    }, {});
-  } catch (error) {
-    console.error('Error al obtener la lista semanal y los votos:', error);
-  }
-  this.socket = io('http://localhost:3123');
+      const responseVotos = await fetch(`${this.ruta}/api/votos`);
+      if (!responseVotos.ok) {
+        throw new Error(`Error en la solicitud: ${responseVotos.status}`);
+      }
+      const dataVotos = await responseVotos.json();
 
-  this.socket.on('actualizacionVotos', (votaciones) => {
-    this.votaciones = votaciones.reduce((acc, voto) => {
-      acc[voto.cancionId] = (acc[voto.cancionId] || 0) + 1;
-      return acc;
-    }, {});
-  });
-},
+      this.votaciones = dataVotos.reduce((acc, voto) => {
+        acc[voto.cancionId] = (acc[voto.cancionId] || 0) + 1;
+        return acc;
+      }, {});
+
+    } catch (error) {
+      console.error('Error al obtener la lista semanal:', error);
+    }
+
+    this.socket = io('http://localhost:3123');
+
+    this.socket.on('actualizacionVotos', (votaciones) => {
+      if (!Array.isArray(votaciones)) {
+        console.error('votaciones is not an array:', votaciones);
+        return;
+      }
+
+      this.votaciones = votaciones.reduce((acc, voto) => {
+        acc[voto.cancionId] = voto.cantidad;
+        return acc;
+      }, {});
+    });
+  },
   methods: {
     async votar(cancionId) {
-      const token = localStorage.getItem('token');
-      console.log(token); // Añade esta línea
-      try {
-        if (!token) {
 
-          this.$router.push('/login');
-          return;
-        }
-        const headers = new Headers();
-        headers.append("Content-Type", "application/json");
-        headers.append("Accept", 'application/json');
-        headers.append("Authorization", `Bearer ${token}`);
-
-        const response = await fetch(`${this.ruta}/api/votar`, {
-          method: "POST",
-          headers: headers,
-          body: JSON.stringify({
-            cancionId: cancionId,
-          }),
-        });
-        if (!response.ok) {
-          throw new Error(`Error en la solicitud: ${response.status}`);
-        }
-        const data = await response.json();
-        console.log(data.message);
-
-        if (this.votos.length >= 7) {
-          console.log("Ya has votado 7 veces");
-          return;
-        }
-        if (this.votos.some((voto) => voto.id === cancionId)) {
-          console.log("Ya has votado por esta canción");
-          return;
-        }
-
-        this.votos.push({ id: cancionId });
-      } catch (error) {
-        console.error("Error al votar:", error);
+      if (this.votos.length >= 7) {
+        console.log('Ya has votado 7 veces');
+        return;
       }
 
       this.socket.emit('votar', cancionId, 1);
+      this.votos.push(cancionId);
 
-      //this.votos.push({ id: cancionId });
-
-    },
-    borrarListaSemanal() {
-      fetch(`${this.ruta}/api/borrar-lista-semanal`, {
-        method: 'DELETE',
-      })
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch((error) => {
-          console.error('Error:', error);
-        });
     },
     obtenerVotos(cancionId) {
       return this.votaciones[cancionId] || 0;

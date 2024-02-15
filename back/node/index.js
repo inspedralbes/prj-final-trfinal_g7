@@ -15,25 +15,27 @@ const io = new Server(server, {
 });
 
 let votaciones = [];
-let messages = []; 
+let messages = [];
 
 io.on('connection', (socket) => {
     console.log("Se ha conectado alguien!! con id " + socket.id);
     socket.emit('actualizacionVotos', votaciones);
     socket.on('votar', (cancionId) => {
-        votaciones.push({ id: socket.id, cancionId });
+        if (!votaciones[cancionId]) {
+            votaciones[cancionId] = 0;
+        }
+        votaciones[cancionId]++;
         console.log('Voto registrado para la canción con ID:', cancionId);
 
         io.emit('actualizacionVotos', votaciones);
     });
 
-
     socket.on('chat message', (message) => {
         messages.push(message);
         socket.broadcast.emit('chat message', message);
     });
-    
-  
+
+
 
     socket.on('disconnect', () => {
         console.log("Se ha desconectado alguien!! con id " + socket.id);
