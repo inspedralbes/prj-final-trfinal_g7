@@ -1,22 +1,31 @@
 <template>
-    <div>
-      <canvas ref="chart"></canvas>
-    </div>
+    <Bar
+      id="my-chart-id"
+      :options="chartOptions"
+      :data="chartData"
+    />
   </template>
   
   <script>
-  import { Chart, BarController, CategoryScale, LinearScale } from 'chart.js';
+  import { Bar } from 'vue-chartjs'
+  import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
   
-  Chart.register(BarController, CategoryScale, LinearScale);
+  ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
   
   export default {
-    props: ['chartData', 'options'],
-    mounted() {
-      new Chart(this.$refs.chart.getContext('2d'), {
-        type: 'bar',
-        data: this.chartData,
-        options: this.options,
-      });
-    },
-  };
+    name: 'BarChart',
+    components: { Bar },
+    data() {
+      return {
+        chartData: {
+          labels: [ 'January', 'February', 'March' ],
+          datasets: [ { data: [40, 20, 12] } ]
+        },
+        chartOptions: {
+          responsive: true
+        }
+      }
+    }
+  }
   </script>
+  
