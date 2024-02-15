@@ -29,41 +29,44 @@ export default {
     };
   },
   async mounted() {
-    try {
-      const response = await fetch(`${this.ruta}/api/lista-semanal`);
-      if (!response.ok) {
-        throw new Error(`Error en la solicitud: ${response.status}`);
-      }
-      const data = await response.json();
-      this.canciones = data;
-    } catch (error) {
-      console.error('Error al obtener la lista semanal:', error);
+  try {
+    // Obtén las canciones
+    const responseCanciones = await fetch(`${this.ruta}/api/lista-semanal`);
+    if (!responseCanciones.ok) {
+      throw new Error(`Error en la solicitud: ${responseCanciones.status}`);
     }
-    this.socket = io('http://localhost:3123');
+    const dataCanciones = await responseCanciones.json();
+    this.canciones = dataCanciones;
 
-    this.socket.on('actualizacionVotos', (votaciones) => {
-      if (!Array.isArray(votaciones)) {
-        console.error('votaciones is not an array:', votaciones);
-        return;
-      }
+    // Obtén los votos
+    const responseVotos = await fetch(`${this.ruta}/api/votos`);
+    if (!responseVotos.ok) {
+      throw new Error(`Error en la solicitud: ${responseVotos.status}`);
+    }
+    const dataVotos = await responseVotos.json();
+    this.votaciones = dataVotos.reduce((acc, voto) => {
+      acc[voto.cancionId] = (acc[voto.cancionId] || 0) + 1;
+      return acc;
+    }, {});
+  } catch (error) {
+    console.error('Error al obtener la lista semanal y los votos:', error);
+  }
+  this.socket = io('http://localhost:3123');
 
-      this.votaciones = {};
-
-      votaciones.forEach(voto => {
-        if (!this.votaciones[voto.cancionId]) {
-          this.votaciones[voto.cancionId] = 0;
-        }
-        this.votaciones[voto.cancionId]++;
-      });
-    });
-  },
+  this.socket.on('actualizacionVotos', (votaciones) => {
+    this.votaciones = votaciones.reduce((acc, voto) => {
+      acc[voto.cancionId] = (acc[voto.cancionId] || 0) + 1;
+      return acc;
+    }, {});
+  });
+},
   methods: {
     async votar(cancionId) {
       const token = localStorage.getItem('token');
       console.log(token); // Añade esta línea
       try {
         if (!token) {
-       
+
           this.$router.push('/login');
           return;
         }
@@ -100,7 +103,8 @@ export default {
       }
 
       this.socket.emit('votar', cancionId, 1);
-      this.votos.push(cancionId);
+
+      //this.votos.push({ id: cancionId });
 
     },
     borrarListaSemanal() {
@@ -114,7 +118,7 @@ export default {
         });
     },
     obtenerVotos(cancionId) {
-      return this.votos.filter((voto) => voto.cancionId === cancionId).length;
+      return this.votaciones[cancionId] || 0;
     },
   },
 };
