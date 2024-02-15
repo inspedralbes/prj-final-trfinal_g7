@@ -60,9 +60,10 @@ export default {
   methods: {
     async votar(cancionId) {
       const token = localStorage.getItem('token');
-      console.log(token); 
+      console.log(token); // Añade esta línea
       try {
-        if (!token) {        
+        if (!token) {
+       
           this.$router.push('/login');
           return;
         }

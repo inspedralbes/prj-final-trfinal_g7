@@ -37,7 +37,6 @@ io.on('connection', (socket) => {
 
     socket.on('disconnect', () => {
         console.log("Se ha desconectado alguien!! con id " + socket.id);
-        votaciones = votaciones.filter(voto => voto.id !== socket.id);
         io.emit('actualizacionVotos', votaciones);
     });
 });
