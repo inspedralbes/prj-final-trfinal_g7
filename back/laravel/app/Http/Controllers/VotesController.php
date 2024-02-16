@@ -53,4 +53,22 @@ class VotesController extends Controller
 
     return response()->json(['has_voted' => $hasVoted]);
     }
+    // En tu VotesController.php
+
+public function getAllVotes()
+{
+    $votes = Vote::all();
+
+    return response()->json(['votes' => $votes]);
+}
+public function deleteAll()
+{
+    Vote::truncate();
+
+    return response()->json([
+        'status' => 'success',
+        'message' => 'All votes have been deleted.'
+    ]);
+}
+
 }

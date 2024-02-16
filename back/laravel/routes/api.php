@@ -60,13 +60,14 @@ Route::get('/canciones/{id}/votos', [VotesController::class, 'cantidadVotosPorCa
 // Rutas para registro y inicio de sesión
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-
+Route::delete('/deleteVotes', [VotesController::class, 'deleteAll']);
 
 /**RUTAS PARA LOS VOTOS*/
 Route::middleware('throttle:150,1')->group(function () {
     Route::middleware('auth:api')->post('/hasVotedForSong', [VotesController::class, 'hasVotedForSong']);
     Route::get('/votesForSong/{cancionId}', [VotesController::class, 'getVotesForSong']);
 });
+Route::get('/votos', [VotesController::class, 'getAllVotes']);
 
 
 // Ruta para obtener información del usuario autenticado
