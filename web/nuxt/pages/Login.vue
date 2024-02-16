@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { useCounterStore } from '@/stores/index.js'
 export default {
   data() {
     return {
@@ -30,6 +31,7 @@ export default {
   },
   methods: {
     async login() {
+      const store = useCounterStore();
       try {
         const response = await fetch(`${this.ruta}/api/login`, {
           method: 'POST',
@@ -43,13 +45,14 @@ export default {
           const data = await response.json();
           console.log('Usuario logeado');
 
-          localStorage.setItem('token', data.token);
+        
+          store.setToken(data.token);
 
-          // Verificar el rol del usuario y redirigir a la ruta correspondiente
+         
           if (data.user.role === 'admin') {
             this.$router.push('/Admin');
           } else {
-            this.$router.push('/ListaSemanal');
+            this.$router.push('/');
           }
         } else {
           console.log('Error al logear usuario');

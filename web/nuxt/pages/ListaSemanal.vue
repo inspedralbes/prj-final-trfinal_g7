@@ -8,7 +8,8 @@
           <p>{{ cancion.artista }}</p>
         </div>
         <div class="cancion-votos">
-          <button @click="votar(cancion.id)" :disabled="votos.length >= 7">Votar</button>
+
+          <button @click="votar(cancion.id)" :disabled="haVotadoPorCancion(cancion.id)">Votar</button>
           <span>{{ obtenerVotos(cancion.id) }}</span>
         </div>
       </li>
@@ -19,6 +20,7 @@
 
 <script>
 import io from 'socket.io-client';
+import { useCounterStore } from '@/stores/index.js'
 
 export default {
   data() {
@@ -26,7 +28,7 @@ export default {
       canciones: [],
       ruta: 'http://localhost:8000',
       votos: [],
-      votaciones: {}, // Agregar votaciones
+      votaciones: {}, 
     };
   },
   async mounted() {
@@ -60,8 +62,12 @@ export default {
     });
   },
   methods: {
+    haVotadoPorCancion(cancionId) {
+      return this.votos.some((voto) => voto.id === cancionId);
+    },
     async votar(cancionId) {
-      const token = localStorage.getItem('token');
+      const store = useCounterStore();
+      const token = store.auth.token;
       console.log(token); 
       try {
         if (!token) {        
