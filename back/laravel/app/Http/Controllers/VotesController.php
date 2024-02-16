@@ -17,7 +17,7 @@ class VotesController extends Controller
         }
         $cancionId = $request->input('cancionId');
     
-        // Comprueba si el usuario ya ha votado por esta canción
+        
         $existingVote = Vote::where('user_id', $user->id)->where('cancion_id', $cancionId)->first();
         if ($existingVote) {
             return response()->json(['message' => 'Ya has votado por esta canción'], 400);
@@ -28,8 +28,7 @@ class VotesController extends Controller
         if ($voteCount >= 7) {
             return response()->json(['message' => 'Ya has votado 7 veces'], 400);
         }
-    
-        // Crea un nuevo voto
+        
         $vote = new Vote;
         $vote->user_id = $user->id;
         $vote->cancion_id = $cancionId;

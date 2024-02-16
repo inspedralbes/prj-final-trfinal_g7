@@ -19,7 +19,7 @@
       };
     },
     async created() {
-      //  obtener la lista más votada
+   
    
       //const response = await fetch('http://localhost:8000/api/most_voted_songs');
       //this.songs = await response.json();

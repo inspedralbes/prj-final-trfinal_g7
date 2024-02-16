@@ -72,6 +72,12 @@ export default {
             }
         },
         async asignarCategoria() {
+            /**const token = localStorage.getItem('token');
+            const headers = new Headers();
+            headers.append("Content-Type", "application/json");
+            headers.append("Accept", 'application/json');
+            headers.append("Authorization", `Bearer ${token}`);*/
+
             const response = await fetch(`${this.ruta}/api/assign-categories`, {
                 method: 'POST',
                 headers: {
@@ -84,7 +90,7 @@ export default {
             });
 
             if (!response.ok) {
-                // Handle error
+                throw new Error(`Error en la solicitud: ${response.status}`);
             }
         },
     },
@@ -100,43 +106,44 @@ export default {
 </script>
 <style scoped>
 div {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f2f2f2;
-  font-family: Arial, sans-serif;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f2f2f2;
+    font-family: Arial, sans-serif;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 label {
-  font-size: 16px;
-  color: #333;
-  display: block;
-  margin-bottom: 5px;
+    font-size: 16px;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
 }
 
-select, input[type="checkbox"] {
-  margin-bottom: 20px;
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+select,
+input[type="checkbox"] {
+    margin-bottom: 20px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 button {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #337ab7;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #337ab7;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
 }
 
 button:hover {
-  background-color: #225588;
+    background-color: #225588;
 }
 </style>
