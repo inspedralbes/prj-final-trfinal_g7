@@ -16,6 +16,7 @@
     <button @click="borrarListaSemanal">Borrar lista semanal</button>
   </div>
 </template>
+
 <script>
 import io from 'socket.io-client';
 
@@ -25,7 +26,7 @@ export default {
       canciones: [],
       ruta: 'http://localhost:8000',
       votos: [],
-      votaciones: {},
+      votaciones: {}, // Agregar votaciones
     };
   },
   async mounted() {
@@ -49,6 +50,7 @@ export default {
 
       this.votaciones = {};
 
+      // Actualiza el objeto de votaciones con los nuevos votos recibidos
       votaciones.forEach(voto => {
         if (!this.votaciones[voto.cancionId]) {
           this.votaciones[voto.cancionId] = 0;
@@ -114,7 +116,8 @@ export default {
         });
     },
     obtenerVotos(cancionId) {
-      return this.votos.filter((voto) => voto.cancionId === cancionId).length;
+      // Devuelve el número de votos para la canción actual utilizando los datos de votaciones
+      return this.votaciones[cancionId] || 0;
     },
   },
 };
