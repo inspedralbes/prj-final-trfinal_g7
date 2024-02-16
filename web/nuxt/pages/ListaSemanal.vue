@@ -23,6 +23,7 @@ import io from 'socket.io-client';
 import { useCounterStore } from '@/stores/index.js'
 
 export default {
+  name: 'ListaSemanal',
   data() {
     return {
       canciones: [],

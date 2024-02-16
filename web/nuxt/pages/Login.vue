@@ -52,7 +52,7 @@ export default {
           if (data.user.role === 'admin') {
             this.$router.push('/Admin');
           } else {
-            this.$router.push('/ListaSemanal');
+            this.$router.push('/landing');
           }
         } else {
           console.log('Error al logear usuario');

@@ -24,6 +24,8 @@
           </tr>
         </tbody>
       </table>
+      <router-link class="link" to="/ListaSemanal">Lista Semanal</router-link>
+      <router-link class="link" to="/">Canciones</router-link>
     </div>
   </template>
   

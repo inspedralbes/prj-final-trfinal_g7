@@ -16,6 +16,10 @@
         <h2>Ranking de canciones</h2>
         <SongRanking />
       </div>
+      <div class="landing-section">
+        <h2>Lista semanal para votar</h2>
+        <ListaSemanal/>
+      </div>
     </div>
   </template>
   
@@ -23,12 +27,14 @@
   import MostVotedList from './MostVotedList.vue';
   import UserChat from './UserChat.vue';
   import SongRanking from './SongRanking.vue';
-  
+  import ListaSemanal from './ListaSemanal.vue';
+
   export default {
     components: {
       MostVotedList,
       UserChat,
       SongRanking,
+      ListaSemanal
     },
   };
   </script>
