@@ -9,7 +9,7 @@
         </div>
         <div class="cancion-votos">
 
-          <button @click="votar(cancion.id)" >Votar</button>
+          <button @click="votar(cancion.id)">Votar</button>
           <span>{{ obtenerVotos(cancion.id) }}</span>
         </div>
       </li>
@@ -32,6 +32,8 @@ export default {
     };
   },
   async mounted() {
+    this.socket = io('http://localhost:3123');
+    this.actualizarVotos();
     try {
       const response = await fetch(`${this.ruta}/api/lista-semanal`);
       if (!response.ok) {
@@ -42,7 +44,9 @@ export default {
     } catch (error) {
       console.error('Error al obtener la lista semanal:', error);
     }
-    this.socket = io('http://localhost:3123');
+
+    // Solicitar los votos de la base de datos cada vez que se conecta
+    this.actualizarVotos();
 
     this.socket.on('actualizacionVotos', (votaciones) => {
       if (!Array.isArray(votaciones)) {
@@ -59,9 +63,45 @@ export default {
         this.votaciones[voto.cancionId]++;
       });
     });
+    console.log('array pagina', this.votaciones);
   },
   methods: {
+    async actualizarVotos() {
+      try {
+        const response = await fetch(`${this.ruta}/api/votos`);
+        if (!response.ok) {
+          throw new Error(`Error en la solicitud: ${response.status}`);
+        }
+        const data = await response.json();
+        this.votos = data.votes;
+
+        // Inicializar el conteo de votos para cada canción en la lista semanal
+        this.canciones.forEach(cancion => {
+          this.votaciones[cancion.id] = 0;
+        });
+
+        // Contar los votos para cada canción
+        this.votos.forEach(voto => {
+          if (this.votaciones.hasOwnProperty(voto.cancion_id)) {
+            this.votaciones[voto.cancion_id]++;
+          }
+        });
+
+        // Crear un array con los campos idCancion y numeroVotos
+        const votosPorCancion = this.canciones.map(cancion => ({
+          idCancion: cancion.id,
+          numeroVotos: this.votaciones[cancion.id] || 0,
+        }));
+
+        // Enviar el array votosPorCancion al servidor Node.js
+        this.socket.emit('enviarVotosPorCancion', votosPorCancion);
+      } catch (error) {
+        console.error('Error al obtener los votos:', error);
+      }
+     
+    },
     async votar(cancionId) {
+     
       const store = useCounterStore();
       const token = store.auth.token;
       console.log(token);
@@ -88,23 +128,20 @@ export default {
         const data = await response.json();
         console.log(data.message);
 
-        if (this.votos.length >= 7) {
-          console.log("Ya has votado 7 veces");
-          return;
-        }
-        if (this.votos.some((voto) => voto.id === cancionId)) {
-          console.log("Ya has votado por esta canción");
-          return;
-        }
+      
 
-        this.votos.push({ id: cancionId });
+        // Aquí es donde estás empujando cancionId dos veces en this.votos.
+        // Deberías empujarlo solo una vez.
+      
+
+
       } catch (error) {
         console.error("Error al votar:", error);
       }
 
       this.socket.emit('votar', cancionId, 1);
-      this.votos.push(cancionId);
-
+      // this.votos.push(cancionId); // Elimina esta línea
+      await this.actualizarVotos();
     },
     borrarListaSemanal() {
       fetch(`${this.ruta}/api/borrar-lista-semanal`, {
