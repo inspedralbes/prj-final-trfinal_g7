@@ -8,6 +8,7 @@ export const useCounterStore = defineStore({
     auth: {
       token: null,
     },
+    
   }),
   actions: {
     setToken(newToken) {

@@ -117,7 +117,7 @@ export default {
         });
     },
     obtenerVotos(cancionId) {
-      // Devuelve el número de votos para la canción actual utilizando los datos de votaciones
+      const store = useCounterStore();
       return this.votaciones[cancionId] || 0;
     },
   },
