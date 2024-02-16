@@ -9,7 +9,7 @@
         </div>
         <div class="cancion-votos">
 
-          <button @click="votar(cancion.id)" :disabled="haVotadoPorCancion(cancion.id)">Votar</button>
+          <button @click="votar(cancion.id)" >Votar</button>
           <span>{{ obtenerVotos(cancion.id) }}</span>
         </div>
       </li>
@@ -28,7 +28,7 @@ export default {
       canciones: [],
       ruta: 'http://localhost:8000',
       votos: [],
-      votaciones: {}, 
+      votaciones: {},
     };
   },
   async mounted() {
@@ -52,7 +52,6 @@ export default {
 
       this.votaciones = {};
 
-      // Actualiza el objeto de votaciones con los nuevos votos recibidos
       votaciones.forEach(voto => {
         if (!this.votaciones[voto.cancionId]) {
           this.votaciones[voto.cancionId] = 0;
@@ -62,15 +61,12 @@ export default {
     });
   },
   methods: {
-    haVotadoPorCancion(cancionId) {
-      return this.votos.some((voto) => voto.id === cancionId);
-    },
     async votar(cancionId) {
       const store = useCounterStore();
       const token = store.auth.token;
-      console.log(token); 
+      console.log(token);
       try {
-        if (!token) {        
+        if (!token) {
           this.$router.push('/login');
           return;
         }

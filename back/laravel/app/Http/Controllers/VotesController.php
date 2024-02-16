@@ -23,11 +23,6 @@ class VotesController extends Controller
             return response()->json(['message' => 'Ya has votado por esta canción'], 400);
         }
     
-        // Comprueba si el usuario ya ha votado 7 veces
-        $voteCount = Vote::where('user_id', $user->id)->count();
-        if ($voteCount >= 7) {
-            return response()->json(['message' => 'Ya has votado 7 veces'], 400);
-        }
         
         $vote = new Vote;
         $vote->user_id = $user->id;
@@ -36,10 +31,26 @@ class VotesController extends Controller
     
         return response()->json(['message' => 'Voto registrado con éxito']);
     }
-    public function getVotesCountBySong($cancionId)
+    public function getVotesForSong(Request $request, $cancionId)
     {
-        $voteCount = Vote::where('cancion_id', $cancionId)->count();
-        return response()->json(['voteCount' => $voteCount]);
+        $votes = Vote::where('cancion_id', $cancionId)->count();
+
+        return response()->json(['votes' => $votes]);
     }
-    
+    public function hasVotedForSong(Request $request)
+    {
+    $user = auth('sanctum')->user();
+    if (!$user) {
+        \Log::warning('El usuario no está autenticado');
+        return response()->json(['error' => 'USUARIO NO AUTORIZADO'], 401);
+    }
+    $userId = $user->id;
+    $cancionId = $request->input('cancion_id');
+
+    $vote = Vote::where('user_id', $userId)->where('cancion_id', $cancionId)->first();
+
+    $hasVoted = $vote ? true : false;
+
+    return response()->json(['has_voted' => $hasVoted]);
+    }
 }

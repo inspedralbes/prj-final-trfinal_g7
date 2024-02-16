@@ -63,7 +63,10 @@ Route::post('/login', [AuthController::class, 'login']);
 
 
 /**RUTAS PARA LOS VOTOS*/
-Route::get('/most_voted_songs', 'SongController@mostVoted');
+Route::middleware('throttle:150,1')->group(function () {
+    Route::middleware('auth:api')->post('/hasVotedForSong', [VotesController::class, 'hasVotedForSong']);
+    Route::get('/votesForSong/{cancionId}', [VotesController::class, 'getVotesForSong']);
+});
 
 
 // Ruta para obtener información del usuario autenticado
