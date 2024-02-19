@@ -20,8 +20,5 @@
     "pinia": "^2.1.7",
     "socket.io-client": "^4.7.4",
     "vue-chartjs": "^5.3.0"
-  },
-  "overrides": {
-    "vue": "latest"
   }
 }

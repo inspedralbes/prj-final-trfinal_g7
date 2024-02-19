@@ -34,7 +34,7 @@ export default {
     return {
       canciones: [],
       filtro: '',
-      ruta: 'http://localhost:8000',
+      ruta: 'http://trfinal.a17danvicfer.daw.inspedralbes.cat/output/laravel/public',
       categorias: [],
       categoriaSeleccionada: '',
 

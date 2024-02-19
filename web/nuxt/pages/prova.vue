@@ -27,7 +27,7 @@ export default {
             listaSemanal: [],
             categorias: [],
             categoriaSeleccionada: '',
-            ruta: 'http://localhost:8000',
+            ruta: 'http://trfinal.a17danvicfer.daw.inspedralbes.cat/output/laravel/public',
             canciones: [],
         };
     },
