@@ -25,7 +25,7 @@ export default {
             categorias: [],
             cancionSeleccionada: null,
             categoriaSeleccionada: [],
-            ruta: 'http://trfinal.a17danvicfer.daw.inspedralbes.cat/output/laravel/public',
+            ruta: 'http://trfinal.a17danvicfer.daw.inspedralbes.cat/laravel/public',
         };
     },
     methods: {
